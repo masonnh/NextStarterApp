@@ -41,8 +41,6 @@ const Footer: React.FC = () => {
                 <div className="footer-right">
                     <div className="footer-column">
                         <p>Product</p>
-                        <Link href={"/comingsoon"}>Pricing</Link>
-                        <Link href={"/comingsoon"}>Demo</Link>
                         <span 
                             className="theme-toggle" 
                             onClick={toggleTheme} 
@@ -50,6 +48,7 @@ const Footer: React.FC = () => {
                         >
                             {darkMode ? "Light Mode" : "Dark Mode"}
                         </span>
+                        <Link href={"/version"}>Version</Link>
                     </div>
 
                     <div className="footer-column">
@@ -60,8 +59,8 @@ const Footer: React.FC = () => {
 
                     <div className="footer-column">
                         <p>Legal</p>
-                        <Link href={"/comingsoon"}>Privacy Policy</Link>
-                        <Link href={"/comingsoon"}>Terms and Conditions</Link>
+                        <Link href={"/privacy"}>Privacy Policy</Link>
+                        <Link href={"/terms"}>Terms and Conditions</Link>
                     </div>
                 </div>
             </div>
