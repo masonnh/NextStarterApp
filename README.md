@@ -1,23 +1,25 @@
 # NextJS Starter App
 A starter app in NextJS.
 
+## Functionality
+Supports creating a user profile with Google OAuth and saving it to Supabase.
+
 ## Setup
-### Environment Variables
+### 1. Environment Variables
 You will need a .env.local file located in the root of your project directory.
-This file should have the following variables (replace TODO with the corresponding value):
+Copy ```.env.example``` to a new file called ```.env.local``` and fill out the environment variables inside.
 
-General Variables
-- NEXT_PUBLIC_ENVIRONMENT=TODO
+```cp .env.example .env.local```
 
-Development Environment
-- NEXT_PUBLIC_BASE_URL_DEV=TODO
-- NEXT_PUBLIC_SUPABASE_URL_DEV=TODO
-- NEXT_PUBLIC_SUPABASE_ANON_KEY_DEV=TODO
+### 2. External Technology
+You will need to connect 2 technologies before this will work:
+- Supabase
+- Google OAuth (from the Google Cloud Console)
 
-Production Environment
-- NEXT_PUBLIC_BASE_URL_PROD=TODO
-- NEXT_PUBLIC_SUPABASE_URL_PROD=TODO
-- NEXT_PUBLIC_SUPABASE_ANON_KEY_PROD=TODO
+Tutorials on how to do this are beyond the scope of this repository. If you go through and ensure that you have legitimate values for each of the environmental variables, you will be well on your way.
+
+### 3. Database Schema
+This app is extremely simple. Supabase automatically creates an Auth table for you. This is all you need for the app to work.
 
 ## Tech Stack
 - NextJS
@@ -26,10 +28,15 @@ Production Environment
 - Google OAuth
 
 ## Pages
+### General
 - Home/Landing Page
 - Login
-- Profile
+- Profile (must be logged in)
 - Coming Soon
 
-## Functionality
-Supports creating a user profile with Google OAuth and saving it to Supabase.
+### Legal
+- Privacy Policy
+- Terms and Conditions
+
+### Product
+- Version
