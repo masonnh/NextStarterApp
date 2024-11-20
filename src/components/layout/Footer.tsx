@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
                         >
                             {darkMode ? "Light Mode" : "Dark Mode"}
                         </span>
-                        <Link href={"/version"}>Version</Link>
+                        <Link href={"/pricing"}>Pricing</Link>
                     </div>
 
                     <div className="footer-column">
