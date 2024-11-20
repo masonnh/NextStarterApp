@@ -569,6 +569,10 @@ Use section labels as needed for readability.
     line-height: 2rem;
 }
 
+.feature-text-content {
+    width: 65ch;
+}
+
 .feature-text ul {
     margin-top: 0.5rem;
     padding-left: 1.5rem;

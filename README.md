@@ -21,6 +21,9 @@ Tutorials on how to do this are beyond the scope of this repository. If you go t
 ### 3. Database Schema
 This app is extremely simple. Supabase automatically creates an Auth table for you. This is all you need for the app to work.
 
+### 4. Name
+This app assumes the product name is "Caster". You can search and replace all instances of the word "Caster" in this repo with your own product name.
+
 ## Tech Stack
 - NextJS
 - Typescript
