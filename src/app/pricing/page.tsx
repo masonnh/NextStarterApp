@@ -33,6 +33,6 @@ export default function Pricing() {
 }
 
 export const metadata: Metadata = {
-    title: 'Pricing - Caster',
+    title: 'Pricing | Caster',
     description: 'Pricing information for Caster',
 };

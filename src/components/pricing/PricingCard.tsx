@@ -5,7 +5,7 @@ interface PricingCardProps {
     price: string;
     period: string;
     features: string[];
-    special: boolean;
+    special?: boolean;
 }
 
 export default function PricingCard(props: PricingCardProps) {

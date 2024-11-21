@@ -14,8 +14,7 @@ export default function Home() {
                     accent='Effortless' 
                     text='Connect your QuickBooks, track your daily cashflow, and automate your forecasts' 
                     imgSrc='img/LineGraph.svg' 
-                    imgAlt='Cashflow Line Graph' 
-                    default={true} 
+                    imgAlt='Cashflow Line Graph'
                 />
                 <InfoCard 
                     title='Generate Real-Time Dashboards' 
@@ -30,8 +29,7 @@ export default function Home() {
                     accent='AI Assisted' 
                     text='24/7 access to a cashflow guru, customized insights based on your data, and learn best practices your competitors use' 
                     imgSrc='img/ChatbotButton.svg' 
-                    imgAlt='Chatbot button' 
-                    default={true} 
+                    imgAlt='Chatbot button'
                 />
             <PromoCard />
         </>
@@ -39,6 +37,6 @@ export default function Home() {
 }
 
 export const metadata: Metadata = {
-    title: 'Caster (app name)',
+    title: 'Caster',
     description: 'Caster description',
 };

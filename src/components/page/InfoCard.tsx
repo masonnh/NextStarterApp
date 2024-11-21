@@ -33,7 +33,7 @@ export default function InfoCard(props: InfoCardProps) {
     };
 
     return (
-        <div className={`info-card ${props.default === true ? 'purple-bg' : ''}`}>
+        <div className={`info-card ${props.default === false ? '' : 'purple-bg'}`}>
             {props.default === true &&
                 <div className='info-content-container'>
                     <div className='info-visual'>

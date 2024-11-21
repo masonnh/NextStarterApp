@@ -22,6 +22,7 @@ export default function About() {
                 imgAlt='Cashflow Line Graph' 
                 default={false} 
             />
+
             <Team
                 team={[
                     { name: 'John Doe', role: 'CEO', imgSrc: 'https://via.placeholder.com/150', imgAlt: 'John Doe' },
