@@ -4,7 +4,8 @@ import { Metadata } from 'next';
 export default function Pricing() {
     return (
         <div className='pricing-page'>
-            <h1>Our packages</h1>
+            <h1>Reduce costs with the best plan for your business</h1>
+            <p>Every plan starts with a simple 30 day free trial</p>
 
             <div className="pricing-container">
                 <PricingCard 
