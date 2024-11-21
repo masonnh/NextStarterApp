@@ -1,4 +1,5 @@
-import InfoCard from '@/components/home/InfoCard';
+import Team from '@/components/about/Team';
+import InfoCard from '@/components/page/InfoCard';
 import { Metadata } from 'next';
 
 export default function About() {
@@ -20,6 +21,13 @@ export default function About() {
                 imgSrc='img/LineGraph.svg' 
                 imgAlt='Cashflow Line Graph' 
                 default={false} 
+            />
+            <Team
+                team={[
+                    { name: 'John Doe', role: 'CEO', imgSrc: 'https://via.placeholder.com/150', imgAlt: 'John Doe' },
+                    { name: 'Jane Doe', role: 'CTO', imgSrc: 'https://via.placeholder.com/150', imgAlt: 'Jane Doe' },
+                    { name: 'Bob Smith', role: 'CPO', imgSrc: 'https://via.placeholder.com/150', imgAlt: 'Bob Smith' },
+                ]}
             />
         </div>
     );

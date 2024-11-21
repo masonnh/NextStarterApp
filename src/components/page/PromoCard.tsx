@@ -5,7 +5,7 @@ export default function PromoCard() {
     return (
         <div className='free-plan-promo purple-bg'>
             <div className='free-plan-promo-text-container'>
-                <div className='feature-text'>
+                <div className='info-text'>
                     <h2>Join our <span className='text-accent'>Free</span> Plan</h2>
                     <ul>
                         <li>Automate your cashflow forecasts</li>

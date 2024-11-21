@@ -1,4 +1,14 @@
-export default function PricingCard(props: any) {
+import React from 'react';
+
+interface PricingCardProps {
+    planName: string;
+    price: string;
+    period: string;
+    features: string[];
+    special: boolean;
+}
+
+export default function PricingCard(props: PricingCardProps) {
     return (
         <div className="pricing-card">
             <div className={`plan-name ${props.special === true ? 'plan-name-special' : ''}`}>{props.planName}</div>

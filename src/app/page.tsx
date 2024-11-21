@@ -1,14 +1,15 @@
 import { Metadata } from 'next';
 import Hero from '@/components/home/Hero';
-import PromoCard from '@/components/home/PromoCard';
-import InfoCard from '@/components/home/InfoCard';
+import PromoCard from '@/components/page/PromoCard';
+import InfoCard from '@/components/page/InfoCard';
 
 export default function Home() {
     return (
         <>
             <div className='home-container'>
                 <Hero />
-                <InfoCard 
+            </div>
+            <InfoCard 
                     title='Create Effortless Forecasts' 
                     accent='Effortless' 
                     text='Connect your QuickBooks, track your daily cashflow, and automate your forecasts' 
@@ -32,7 +33,6 @@ export default function Home() {
                     imgAlt='Chatbot button' 
                     default={true} 
                 />
-            </div>
             <PromoCard />
         </>
     );

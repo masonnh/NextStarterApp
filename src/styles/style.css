@@ -56,6 +56,7 @@ Be very careful when changing any of these styles.
     /* Styling Variables */
     --navbar-height: var(--spacing-x20);
     --side-padding: 8%;
+    --ignore-side-padding: calc((var(--side-padding) * -1) - 1.5%);
     --drop-shadow: 0 4px 4px rgba(var(--shadow-color), 0.25);
     --inset-shadow: inset 0 4px 4px rgba(var(--shadow-color), 0.25);
 
@@ -129,18 +130,20 @@ main {
     overflow-x: hidden;
 }
 
+/* ##### TYPOGRAPHY ##### */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0.25rem 0;
+    color: var(--text-color);
+}
+
 h1 {
     font-size: var(--h1-font-size); /* Use custom font size */
     font-weight: var(--font-weight-bold); /* Use bold weight for h1 */
-    color: var(--text-color); /* Optional: Set primary color for h1 */
-    margin: 0.25rem 0;
 }
 
 h2 {
     font-size: var(--h2-font-size);
     font-weight: var(--font-weight-semi-bold); /* Use semi-bold for h2 */
-    color: var(--text-color); /* Optional: Set secondary color for h2 */
-    margin: 0.25rem 0;
 }
 
 p {
@@ -445,7 +448,7 @@ Use section labels as needed for readability.
 .home-container {
     height: 100%;
     width: 100vw;
-    margin: 0 calc((var(--side-padding) * -1) - 1.5%);
+    margin: 0 var(--ignore-side-padding);
 }
 
 .home-title-section {
@@ -517,11 +520,11 @@ Use section labels as needed for readability.
     font-weight: bold;
 }
 
-.feature-card {
-    padding: 3rem 0;
+.info-card {
+    padding: 3rem 0; /* Add padding to the top and bottom */
+    margin: 0 var(--ignore-side-padding);
     height: 100%;
     width: 100vw;
-    margin: 0 calc((var(--side-padding) * -1) - 1.5%);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -532,7 +535,7 @@ Use section labels as needed for readability.
     background-color: var(--background-color-3);
 }
 
-.feature-content {
+.info-content {
     width: 100%;
     height: 100%;
     padding: 0;
@@ -542,7 +545,7 @@ Use section labels as needed for readability.
     justify-content: center;
 }
 
-.feature-content-container {
+.info-content-container {
     width: 50%;
     height: 100%;
     display: flex;
@@ -551,7 +554,7 @@ Use section labels as needed for readability.
     justify-content: center;
 }
 
-.feature-visual {
+.info-visual {
     min-width: 20vw;
     max-width: 75%;
     height: auto;
@@ -560,25 +563,26 @@ Use section labels as needed for readability.
     align-items: center;
 }
 
-.feature-visual img {
+.info-visual img {
     width: 100%;
     height: 100%;
 }
 
-.feature-text {
+.info-text {
     width: fit-content;
+    max-width: 65ch;
 }
 
-.feature-text h2 {
+.info-text h2 {
     margin: 0;
     line-height: 2rem;
 }
 
-.feature-text-content {
+.info-text-content {
     width: 65ch;
 }
 
-.feature-text ul {
+.info-text ul {
     margin-top: 0.5rem;
     padding-left: 1.5rem;
 }
@@ -635,25 +639,21 @@ Use section labels as needed for readability.
         align-items: center;
     }
 
-    .feature-card {
+    .info-content {
         flex-direction: column;
     }
 
-    .feature-content {
-        flex-direction: column;
-    }
-
-    .feature-content-container {
+    .info-content-container {
         flex-direction: column;
         width: 100%;
     }
 
-    .feature-visual {
+    .info-visual {
         order: 0; /* Move the visual to the top */
         padding-bottom: 1.25rem;
     }
 
-    .feature-text {
+    .info-text {
         order: 1; /* Move the text to the bottom */
     }
 
@@ -757,4 +757,40 @@ hr {
     color: var(--background-color-2);
     border-color: var(--background-color-2);
     background-color: var(--background-color-2);
+}
+
+/* ##### ABOUT PAGE ##### */
+
+.team-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.team-member-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    grid-column-gap: 1rem;
+    width: 100%;
+    height: 100%;
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-member img {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
 }
