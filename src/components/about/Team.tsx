@@ -1,5 +1,17 @@
+import React from 'react';
 
-export default function Team(props: any) {
+interface TeamMember {
+    imgSrc: string;
+    imgAlt: string;
+    name: string;
+    role: string;
+}
+
+interface TeamProps {
+    team: TeamMember[];
+}
+
+export default function Team(props: TeamProps) {
     return (
         <div className="team-section">
             <h2>Meet Our Team</h2>
