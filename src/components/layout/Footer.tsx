@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
 
                     <div className="footer-column">
                         <p>Company</p>
-                        <Link href={"/comingsoon"}>About</Link>
+                        <Link href={"/about"}>About</Link>
                         <Link href={"mailto:support@caster.com"}>Contact</Link>
                     </div>
 
