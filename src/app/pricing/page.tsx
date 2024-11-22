@@ -1,11 +1,14 @@
+import FAQ from '@/components/page/FAQ';
 import PricingCard from '@/components/pricing/PricingCard';
 import { Metadata } from 'next';
 
 export default function Pricing() {
     return (
         <div className='pricing-page'>
-            <h1>Reduce costs with the best plan for your business</h1>
-            <p>Every plan starts with a simple 30 day free trial</p>
+            <div className='pricing-title'>
+                <h1>Reduce costs with the best plan for your business</h1>
+                <p>Every plan starts with a simple 30 day free trial</p>
+            </div>
 
             <div className="pricing-container">
                 <PricingCard 
@@ -28,6 +31,12 @@ export default function Pricing() {
                     features={["All premium features", "Dedicated support", "Infinite profit glitch", "Example",]}
                 />
             </div>
+
+            <FAQ faqs={[
+                { question: 'What is the refund policy?', answer: 'We offer a 30 day money back guarantee.' },
+                { question: 'Can I cancel my subscription?', answer: 'Yes, you can cancel your subscription at any time.' },
+                { question: 'Can I upgrade my plan?', answer: 'Yes, you can upgrade your plan at any time.' },
+            ]} />
         </div>
     );
 }
