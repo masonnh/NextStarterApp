@@ -713,10 +713,23 @@ Use section labels as needed for readability.
     font-size: 1.15rem;
     font-weight: bold;
     color: var(--primary-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    grid-column-gap: 0.8rem;
 }
 
 .plan-name-special {
     color: var(--text-color);
+}
+
+.plan-special {
+    font-size: 0.75rem;
+    background-color: var(--accent-color-1);
+    color: var(--text-color-2);
+    padding: 0 1rem;
+    border-radius: 1rem;
 }
 
 .plan-price {

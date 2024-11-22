@@ -11,7 +11,10 @@ interface PricingCardProps {
 export default function PricingCard(props: PricingCardProps) {
     return (
         <div className="pricing-card">
-            <div className={`plan-name ${props.special === true ? 'plan-name-special' : ''}`}>{props.planName}</div>
+            <div className={`plan-name ${props.special === true ? 'plan-name-special' : ''}`}>
+                {props.planName}
+                {props.special && <span className="plan-special">Popular</span>}
+            </div>
 
             <div>
                 <span className={`plan-price ${props.special === true ? 'plan-price-special' : ''}`}>
