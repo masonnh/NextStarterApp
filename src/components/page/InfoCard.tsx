@@ -37,20 +37,20 @@ export default function InfoCard(props: InfoCardProps) {
             {props.default === true &&
                 <div className='info-content-container'>
                     <div className='info-visual'>
-                        <img src={props.imgSrc} alt={props.imgAlt} width="100%"/>
+                        <img src={props.imgSrc} alt={props.imgAlt}/>
                     </div>
                 </div>
             }
             <div className='info-content-container'>
                 <div className='info-text'>
                     {renderTitle()}
-                    <p className='info-text-content'>{props.text}</p>
+                    <p>{props.text}</p>
                 </div>
             </div>
             {props.default === false &&
                 <div className='info-content-container'>
                     <div className='info-visual'>
-                        <img src={props.imgSrc} alt={props.imgAlt} width="100%"/>
+                        <img src={props.imgSrc} alt={props.imgAlt}/>
                     </div>
                 </div>
             }
