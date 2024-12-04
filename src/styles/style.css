@@ -97,6 +97,7 @@ html {
 
 body {
     font-family: var(--font-primary), sans-serif; /* Apply the primary font to the entire body */
+    font-size: var(--paragraph-font-size);
     color: var(--text-color); /* Apply default text color */
     background-color: var(--background-color-1); /* Set background color */
     font-weight: var(--font-weight-regular); /* Set default font weight */
@@ -838,7 +839,7 @@ hr {
 
 .faq-item {
     width: 100%;
-    border-top: 1px solid black;
+    border-top: 1px solid var(--text-color);
 }
 
 .faq-question-container {
@@ -859,4 +860,8 @@ hr {
     height: 1.5rem;
     object-fit: cover;
     object-position: center;
+}
+
+.faq-question-container svg {
+    color: var(--text-color);
 }

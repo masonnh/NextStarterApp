@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image'
+import MinusIcon from '@/components/icons/MinusIcon';
+import PlusIcon from '@/components/icons/PlusIcon';
 
 interface Question {
     question: string;
@@ -29,10 +31,7 @@ const FAQItem = (item: Question) => {
                 onClick={toggleOpen}
             >
                 <h3>{question}</h3>
-                <img 
-                    src={`img/icons/${isOpen === true ? 'minus' : 'plus'}.svg`}
-                    alt="plus icon" 
-                />
+                {isOpen ? <MinusIcon /> : <PlusIcon />}
             </div>
             {isOpen && (
                 <p>{answer}</p>
