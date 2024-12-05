@@ -4,7 +4,7 @@ export class License {
   static readonly Free = new License(
     0, 
     "Free", 
-    "", 
+    "prod_RLUM8SkDVDx1xF", 
     [Feature.ImageUpload], 
     100
   );

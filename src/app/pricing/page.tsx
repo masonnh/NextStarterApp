@@ -2,8 +2,6 @@ import FAQ from '@/components/page/FAQ';
 import PricingCard from '@/components/pricing/PricingCard';
 import { Metadata } from 'next';
 import { createClient } from '@/utils/supabase/server';
-import { getProducts } from "@/components/pricing/getproducts";
-import { ProductListing } from "@/components/pricing/ProductListing";
 import { getPlans } from '@/components/pricing/getplans';
 
 export default async function Pricing(): Promise<JSX.Element> {
@@ -22,7 +20,6 @@ export default async function Pricing(): Promise<JSX.Element> {
         ).data?.license_id
     );
 
-    const products = await getProducts();
     const plans = await getPlans();
 
     return (
@@ -41,7 +38,7 @@ export default async function Pricing(): Promise<JSX.Element> {
                         name={name}
                         description={description}
                         price={price}
-                        features={features}
+                        features={features.map((feature) => (feature.name))}
                         special={name === 'Premium' ? true : false}
                     />
                 ))}

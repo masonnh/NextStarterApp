@@ -1,20 +1,28 @@
+"use client";
+
 import React from 'react';
-import { Feature } from '@/utils/user/license/feature';
 
 interface PricingCardProps {
-    id: string;
+    id: number;
     description: string;
     priceId: string;
     name: string;
     price: string;
-    // period: string;
-    features: Feature[];
+    features: string[];
     special?: boolean;
 }
 
 export default function PricingCard(props: PricingCardProps) {
+    const submitForm = () => {
+        const form = document.getElementById(`plan-${props.id}`) as HTMLFormElement;
+        form?.submit();
+    };
+
     return (
-        <div className="pricing-card">
+        <form method="POST" action="/api/checkout/checkout-session" className="pricing-card" id={`plan-${props.id}`}>
+            <input type="hidden" name="id" value={props.id} />
+            <input type="hidden" name="priceId" value={props.priceId} />
+
             <div className={`plan-name ${props.special === true ? 'plan-name-special' : ''}`}>
                 {props.name}
                 {props.special && <span className="plan-special">Popular</span>}
@@ -29,13 +37,19 @@ export default function PricingCard(props: PricingCardProps) {
             </div>
 
             <ul className="plan-features">
-                {props.features.map((feature: Feature, index: number) => (
-                    <li key={index}>&#10003; {feature.name}</li>
+                {props.features.map((feature: string, index: number) => (
+                    <li key={index}>&#10003; {feature}</li>
                 ))}
 
             </ul>
 
-            <div className={`plan-button ${props.special === true ? 'plan-button-special' : ''}`}>Select plan</div>
-        </div>
+            <div 
+                className={`plan-button ${props.special === true ? 'plan-button-special' : ''}`}
+                role="submit"
+                onClick={submitForm}
+            >
+                Select plan
+            </div>
+        </form>
     );
 }
