@@ -1,8 +1,30 @@
 import FAQ from '@/components/page/FAQ';
 import PricingCard from '@/components/pricing/PricingCard';
 import { Metadata } from 'next';
+import { createClient } from '@/utils/supabase/server';
+import { getProducts } from "@/components/pricing/getproducts";
+import { ProductListing } from "@/components/pricing/ProductListing";
+import { getPlans } from '@/components/pricing/getplans';
 
-export default function Pricing() {
+export default async function Pricing(): Promise<JSX.Element> {
+    const client = await createClient();
+    const user = await client.auth.getUser();
+
+    // Check for a license; if the user has one, they can manage their sub
+    const hasLicense = !!(
+        user.data.user &&
+        (
+            await client
+                .from("profiles")
+                .select("license_id")
+                .eq("id", user.data.user.id)
+                .single()
+        ).data?.license_id
+    );
+
+    const products = await getProducts();
+    const plans = await getPlans();
+
     return (
         <div className='pricing-page'>
             <div className='pricing-title'>
@@ -11,26 +33,46 @@ export default function Pricing() {
             </div>
 
             <div className="pricing-container">
+                {plans.map(({ id, name, description, price, priceId, features }) => (
+                    <PricingCard
+                        key={id}
+                        id={id}
+                        priceId={priceId}
+                        name={name}
+                        description={description}
+                        price={price}
+                        features={features}
+                        special={name === 'Premium' ? true : false}
+                    />
+                ))}
+                {!hasLicense ? null : (
+                    <form method="POST" action="/api/checkout/portal-session">
+                        <button role="submit">Manage Subscription</button>
+                    </form>
+                )}
+            </div>
+
+            {/* <div className="pricing-container">
                 <PricingCard 
-                    planName="Free Trial" 
+                    name="Free Trial" 
                     price="$0" 
                     period="month"
                     features={["30 day free trial", "All premium features", "No credit card required"]}
                 />
                 <PricingCard 
-                    planName="Premium" 
+                    name="Premium" 
                     price="$199" 
                     period="month"
                     features={["Squashed bugs", "Time back", "Happy users", "Example", "Example", "Example"]}
                     special={true}
                 />
                 <PricingCard 
-                    planName="Enterprise" 
+                    name="Enterprise" 
                     price="$489" 
                     period="month"
                     features={["All premium features", "Dedicated support", "Infinite profit glitch", "Example",]}
                 />
-            </div>
+            </div> */}
 
             <FAQ faqs={[
                 { question: 'What is the refund policy?', answer: 'We offer a 30 day money back guarantee.' },

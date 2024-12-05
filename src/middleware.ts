@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
-import { updateSession } from '@/lib/supabase/middleware';
+import { createClient } from '@/utils/supabase/server';
+import { updateSession } from '@/utils/supabase/middleware';
 
 export async function middleware(request: NextRequest) {
     // Create Supabase client for SSR
-    const supabase = createClient();
+    const supabase = await createClient();
 
     // Get user session
     const { data: { session } } = await supabase.auth.getSession();

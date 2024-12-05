@@ -1,8 +1,8 @@
 'use client'
 
-import { createClient } from '@/lib/supabase/client'
+import { createClient } from '@/utils/supabase/client'
 import { Provider } from "@supabase/supabase-js";
-import { getEnvVars } from '@/lib/env';
+import { getEnvVars } from '@/utils/env';
 
 const { baseUrl } = getEnvVars();
 

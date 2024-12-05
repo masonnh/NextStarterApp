@@ -8,7 +8,7 @@ import { getEnvVars } from '../env';
 
 const { supabaseUrl, supabaseAnonKey } = getEnvVars();
 
-export function createClient() {
+export async function createClient() {
 	const cookieStore = cookies();
 
 	return createServerClient(

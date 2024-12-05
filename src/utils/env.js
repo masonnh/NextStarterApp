@@ -22,5 +22,18 @@ export const getEnvVars = () => {
             ? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY_PROD
             : process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY_DEV,
 
+        supabaseServiceRoleKey: isProduction
+            ? process.env.SUPABASE_SERVICE_ROLE_KEY_PROD
+            : process.env.SUPABASE_SERVICE_ROLE_KEY_DEV,
+
+        // Stripe
+        stripeSecretKey: isProduction
+            ? process.env.STRIPE_SECRET_KEY_PROD
+            : process.env.STRIPE_SECRET_KEY_DEV,
+
+        stripeWebhookSecret: isProduction
+            ? process.env.STRIPE_WEBHOOK_SECRET_PROD
+            : process.env.STRIPE_WEBHOOK_SECRET_DEV,
+
     };
 };

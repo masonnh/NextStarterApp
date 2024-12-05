@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Button from '@mui/material/Button';
 import SignOutButton from '../auth/SignOutButton';
-import useUserSession from '@/lib/hooks/useUserSession';
+import useUserSession from '@/utils/hooks/useUserSession';
 
 const Navbar: React.FC = () => {
     const { user, session } = useUserSession();
