@@ -3,9 +3,9 @@ import { Feature } from "./feature";
 export class License {
   static readonly Free = new License(
     0, 
-    "Free", 
-    "prod_RLUM8SkDVDx1xF", 
-    [Feature.ImageUpload], 
+    "Free Trial", 
+    "", 
+    [Feature.ThirtyDayAccess, Feature.NoCreditCard, Feature.CancelAnytime], 
     100
   );
   static readonly Premium = new License(

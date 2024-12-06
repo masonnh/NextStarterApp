@@ -56,7 +56,7 @@ export const getPlans = async (): Promise<Plan[]> => {
         );
     });
 
-  // Add the Free License manually at the beginning of the array
+    // Add the Free License manually at the beginning of the array
     plans.unshift(
         new Plan(
             0,
@@ -64,7 +64,7 @@ export const getPlans = async (): Promise<Plan[]> => {
             License.Free.name,
             "Enjoy basic features for free.",
             "0 usd",
-            "",                       // No price ID for free
+            "freetrial",                       // No price ID for free
             undefined,                // No lookup key for free
             License.Free.features,
             License.Free.storage
