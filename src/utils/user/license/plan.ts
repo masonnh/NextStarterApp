@@ -9,7 +9,6 @@ export class Plan {
         public price: string,
         public priceId: string,
         public lookupKey: string | undefined,
-        public features: Feature[],
-        public storage: number
+        public features: Feature[]
     ) {}
 }

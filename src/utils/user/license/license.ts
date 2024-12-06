@@ -5,22 +5,19 @@ export class License {
     0, 
     "Free Trial", 
     "", 
-    [Feature.ThirtyDayAccess, Feature.NoCreditCard, Feature.CancelAnytime], 
-    100
+    [Feature.ThirtyDayAccess, Feature.NoCreditCard, Feature.CancelAnytime]
   );
   static readonly Premium = new License(
     1,
     "Premium",
     "prod_RLTGri0uzIA3g4",
-    [Feature.ImageUpload, Feature.CreateNotes],
-    10000
+    [Feature.ImageUpload, Feature.CreateNotes]
   );
   static readonly Enterprise = new License(
     2,
     "Enterprise",
     "prod_RLTG6zMsuEfmrF",
-    [Feature.ImageUpload, Feature.CreateNotes, Feature.AICompose],
-    10000
+    [Feature.ImageUpload, Feature.CreateNotes, Feature.AICompose]
   );
 
   static readonly ById = {
@@ -40,6 +37,5 @@ export class License {
     public readonly name: string,
     public readonly productId: string,
     public readonly features: Feature[],
-    public readonly storage: number
   ) {}
 }

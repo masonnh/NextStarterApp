@@ -51,8 +51,7 @@ export const getPlans = async (): Promise<Plan[]> => {
                 : "Invalid price",
             price.id,
             price.lookup_key ?? undefined,
-            license.features,
-            license.storage
+            license.features
         );
     });
 
@@ -66,8 +65,7 @@ export const getPlans = async (): Promise<Plan[]> => {
             "0 usd",
             "freetrial",                       // No price ID for free
             undefined,                // No lookup key for free
-            License.Free.features,
-            License.Free.storage
+            License.Free.features
         )
     );
 
