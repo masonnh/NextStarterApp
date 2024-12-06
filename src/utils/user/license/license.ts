@@ -30,6 +30,7 @@ export class License {
   };
 
   static readonly ByProductId = {
+    [License.Free.productId]: License.Free,
     [License.Premium.productId]: License.Premium,
     [License.Enterprise.productId]: License.Enterprise,
   };

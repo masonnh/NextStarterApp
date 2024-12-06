@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
     const user = await supabase.auth.getUser();
 
     if (user.error) {
-        return Response.redirect(`${baseUrl}/sign-in`);
+        return Response.redirect(`${baseUrl}/login`);
     }
 
     // Find the customer by email
