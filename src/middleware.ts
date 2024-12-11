@@ -22,28 +22,6 @@ export async function middleware(request: NextRequest) {
             console.error('No session found for API route');
             return response;
         }
-
-        const user = session.user;
-        const user_id = user.id;
-
-        // Fetch company_id from user_company table
-        const { data, error: companyError } = await supabase
-            .from('user_company')
-            .select('company_id')
-            .eq('user_id', user_id)
-            .single();
-
-        if (companyError) {
-            console.error('Error fetching company:', companyError.message);
-            return response;
-        }
-
-        const company_id = data?.company_id?.toString();
-
-        if (company_id && user_id) {
-            response.headers.set('company_id', company_id);
-            response.headers.set('user_id', user_id);
-        }
     } else {
         // define protected routes (user must be logged in to access)
         const isProtectedRoute = 

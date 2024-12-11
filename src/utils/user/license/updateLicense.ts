@@ -12,7 +12,7 @@ export async function updateLicense(
     const client = await createServiceClient();
 
     const { error } = await client
-        .from("public.users")
+        .from("profiles")
         .update({ license_id: licenseId, payment_pending: pending })
         .eq("email", email);
 

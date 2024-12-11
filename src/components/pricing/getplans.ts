@@ -59,12 +59,12 @@ export const getPlans = async (): Promise<Plan[]> => {
     plans.unshift(
         new Plan(
             0,
-            License.Free.productId,   // This could be an empty string or a custom ID
+            License.Free.productId,     // This could be an empty string or a custom ID
             License.Free.name,
             "Enjoy basic features for free.",
             "0 usd",
-            "freetrial",                       // No price ID for free
-            undefined,                // No lookup key for free
+            "freetrial",                // No price ID for free
+            undefined,                  // No lookup key for free
             License.Free.features
         )
     );
