@@ -2,9 +2,8 @@
 
 import { createClient } from '@/lib/supabase/client'
 import { Provider } from "@supabase/supabase-js";
-import { getEnvVars } from '@/lib/env';
 
-const { baseUrl } = getEnvVars();
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 const supabase = createClient();
 

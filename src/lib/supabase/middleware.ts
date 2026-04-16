@@ -1,8 +1,8 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
-import { getEnvVars } from '../env';
 
-const { supabaseUrl, supabaseAnonKey } = getEnvVars();
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 export async function updateSession(request: NextRequest) {
 	let supabaseResponse = NextResponse.next({

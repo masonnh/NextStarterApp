@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Hero from '@/components/home/Hero';
+import Hero from '@/components/page/Hero';
 import PromoCard from '@/components/page/PromoCard';
 import InfoCard from '@/components/page/InfoCard';
 
