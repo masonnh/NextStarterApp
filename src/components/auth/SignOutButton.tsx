@@ -1,6 +1,6 @@
 "use client";
 
-import Button from '@mui/material/Button';
+import Button from '@/components/ui/Button';
 import { logout } from "./actions";
 
 function SignOutButton() {

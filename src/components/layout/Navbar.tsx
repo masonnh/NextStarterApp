@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Button from '@mui/material/Button';
+import Button from '@/components/ui/Button';
 import SignOutButton from '../auth/SignOutButton';
 import useUserSession from '@/lib/hooks/useUserSession';
 
