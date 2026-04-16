@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Button from '@mui/material/Button';
+// Replaced MUI Button with native button to align with Tailwind/Shadcn styling
 import SignOutButton from '../auth/SignOutButton';
 import useUserSession from '@/lib/hooks/useUserSession';
 
@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
                         </li>
                         <li>
                             <Link href="/login">
-                                <Button className='button button-contained' variant="contained">Sign up</Button>
+                                <button className="button-contained">Sign up</button>
                             </Link>
                         </li>
                     </>

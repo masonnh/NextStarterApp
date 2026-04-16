@@ -7,24 +7,26 @@ const Footer: React.FC = () => {
     // State to track the current theme
     const [darkMode, setDarkMode] = useState(false);
 
-    // On mount, check the saved theme from localStorage
+    // On mount, check the saved theme from localStorage (default: dark)
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme");
-        if (savedTheme === "dark") {
-            setDarkMode(true);
-            document.body.classList.add("dark-mode");
+        if (savedTheme === "light") {
+            setDarkMode(false);
+            document.body.classList.add("light-mode");
         }
     }, []);
 
-    // Function to toggle theme
+    // Function to toggle theme (toggle light-mode on body)
     const toggleTheme = () => {
-        setDarkMode(!darkMode);
-        if (!darkMode) {
-            document.body.classList.add("dark-mode");
-            localStorage.setItem("theme", "dark");
+        const nextLight = !document.body.classList.contains('light-mode');
+        if (nextLight) {
+            document.body.classList.add('light-mode');
+            localStorage.setItem('theme', 'light');
+            setDarkMode(false);
         } else {
-            document.body.classList.remove("dark-mode");
-            localStorage.setItem("theme", "light");
+            document.body.classList.remove('light-mode');
+            localStorage.setItem('theme', 'dark');
+            setDarkMode(true);
         }
     };
 

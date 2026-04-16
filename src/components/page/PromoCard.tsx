@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Button from '@mui/material/Button';
+import Button from '@/components/ui/Button';
 
 export default function PromoCard() {
     return (
@@ -21,7 +21,7 @@ export default function PromoCard() {
                 Create and edit unlimited <br/>
                 proformas with AI
                 <Link href="/login">
-                    <Button className='button button-contained' variant="contained">Get Started</Button>
+                    <Button className='button-contained' variant="contained">Get Started</Button>
                 </Link>
             </div>
         </div>

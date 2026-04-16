@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Button from '@mui/material/Button';
+import Button from '@/components/ui/Button';
 
 export default function Hero() {
     return (
@@ -22,7 +22,7 @@ export default function Hero() {
                 </div>
                 <div className='home-links'>
                     <Link href="/login">
-                        <Button className='button button-contained' variant="contained">Get Started</Button>
+                        <Button className='button-contained' variant="contained">Get Started</Button>
                     </Link>
                 </div>
             </div>

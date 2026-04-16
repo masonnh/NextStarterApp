@@ -1,6 +1,6 @@
 "use client";
 
-import Button from '@mui/material/Button';
+import Button from '@/components/ui/Button';
 import { logout } from "./actions";
 
 function SignOutButton() {
@@ -10,8 +10,8 @@ function SignOutButton() {
 
     return (
         <Button 
-            onClick={handleLogout} 
-            className='button button-contained' 
+            onClick={handleLogout}
+            className='button-contained'
             variant="contained"
         >
             Sign out
