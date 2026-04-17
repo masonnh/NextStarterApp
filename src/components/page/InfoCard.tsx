@@ -5,55 +5,61 @@
 import React from 'react';
 
 interface InfoCardProps {
-    title: string;
-    accent?: string;
-    text: string;
-    imgSrc: string;
-    imgAlt: string;
-    default?: boolean;
+  title: string;
+  accent?: string;
+  text: string;
+  imgSrc: string;
+  imgAlt: string;
+  default?: boolean;
 }
 
 export default function InfoCard(props: InfoCardProps) {
-    const renderTitle = () => {
-        if (props.accent && props.title) {
-            const words = props.title.split(' ');
-            return (
-                <h2>
-                    {words.map((word: string, index: number) => (
-                        word === props.accent ? 
-                            <span key={index}>
-                                {index > 0 ? ' ' : ''}<span className='text-accent'>{word}</span>
-                            </span> :
-                            <span key={index}>{index > 0 ? ' ' : ''}{word}</span>
-                    ))}
-                </h2>
-            );
-        }
-        return <h2>{props.title}</h2>;
-    };
+  const renderTitle = () => {
+    if (props.accent && props.title) {
+      const words = props.title.split(' ');
+      return (
+        <h2>
+          {words.map((word: string, index: number) =>
+            word === props.accent ? (
+              <span key={index}>
+                {index > 0 ? ' ' : ''}
+                <span className="text-accent">{word}</span>
+              </span>
+            ) : (
+              <span key={index}>
+                {index > 0 ? ' ' : ''}
+                {word}
+              </span>
+            ),
+          )}
+        </h2>
+      );
+    }
+    return <h2>{props.title}</h2>;
+  };
 
-    return (
-        <div className={`info-card ${props.default === false ? '' : 'purple-bg'}`}>
-            {props.default === true &&
-                <div className='info-content-container'>
-                    <div className='info-visual'>
-                        <img src={props.imgSrc} alt={props.imgAlt}/>
-                    </div>
-                </div>
-            }
-            <div className='info-content-container'>
-                <div className='info-text'>
-                    {renderTitle()}
-                    <p>{props.text}</p>
-                </div>
-            </div>
-            {props.default === false &&
-                <div className='info-content-container'>
-                    <div className='info-visual'>
-                        <img src={props.imgSrc} alt={props.imgAlt}/>
-                    </div>
-                </div>
-            }
+  return (
+    <div className={`info-card ${props.default === false ? '' : 'purple-bg'}`}>
+      {props.default === true && (
+        <div className="info-content-container">
+          <div className="info-visual">
+            <img src={props.imgSrc} alt={props.imgAlt} />
+          </div>
         </div>
-    );
+      )}
+      <div className="info-content-container">
+        <div className="info-text">
+          {renderTitle()}
+          <p>{props.text}</p>
+        </div>
+      </div>
+      {props.default === false && (
+        <div className="info-content-container">
+          <div className="info-visual">
+            <img src={props.imgSrc} alt={props.imgAlt} />
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }

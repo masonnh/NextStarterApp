@@ -1,5 +1,10 @@
-import { createServerClient, serializeCookieHeader, type CookieOptions } from '@supabase/ssr';
 import { NextApiRequest, NextApiResponse } from 'next';
+
+import {
+  type CookieOptions,
+  createServerClient,
+  serializeCookieHeader,
+} from '@supabase/ssr';
 
 export function createClient(req: NextApiRequest, res: NextApiResponse) {
   return createServerClient(
@@ -13,15 +18,21 @@ export function createClient(req: NextApiRequest, res: NextApiResponse) {
             value: value ?? '',
           }));
         },
-        setAll(cookiesToSet: { name: string; value: string; options?: CookieOptions }[]) {
+        setAll(
+          cookiesToSet: {
+            name: string;
+            value: string;
+            options?: CookieOptions;
+          }[],
+        ) {
           res.setHeader(
             'Set-Cookie',
             cookiesToSet.map(({ name, value, options }) =>
-              serializeCookieHeader(name, value, options ?? {})
-            )
+              serializeCookieHeader(name, value, options ?? {}),
+            ),
           );
         },
       },
-    }
+    },
   );
 }
