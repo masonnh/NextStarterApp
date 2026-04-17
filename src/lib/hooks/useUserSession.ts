@@ -44,7 +44,7 @@ const useUserSession = () => {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((_event, _session) => {
       checkUserSession();
     });
 
