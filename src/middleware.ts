@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabase/server';
 
 export async function middleware(request: NextRequest) {
   // Create Supabase client for SSR
-  const supabase = createClient();
+  const supabase = await createClient();
 
   // Get user session
   const {
