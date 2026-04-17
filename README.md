@@ -1,58 +1,61 @@
-# NextJS Starter App
+# NextStarterApp
 
-A starter app in NextJS.
+Lightweight Next.js starter with Supabase auth and Stripe payments.
 
-## Functionality
+## What this repo provides
 
-Supports creating a user profile with Google OAuth and saving it to Supabase.
+- Written in TypeScript
+- Next.js (app router) frontend with Tailwind + Shadcn.
+- Supabase client + server helpers (auth + DB scaffolding).
+- Google OAuth for one-click signups
+- Prettier and ESLint for code formatting and correctness.
 
-## Setup
+## In progress
 
-### 1. Environment Variables
+- Stripe Checkout API route and a webhook route to verify events.
+- GitHub Actions to automate the CI/CD pipeline
 
-You will need a .env.local file located in the root of your project directory.
-Copy `.env.example` to a new file called `.env.local` and fill out the environment variables inside.
+## Quickstart
 
-`cp .env.example .env.local`
+1. Copy environment variables:
 
-### 2. External Technology
+```bash
+cp .env.example .env.local
+# then edit .env.local with your keys
+```
 
-You will need to connect 2 technologies before this will work:
+2. Install and run locally:
 
-- Supabase
-- Google OAuth (from the Google Cloud Console)
+```bash
+npm install
+npm run dev
+```
 
-Tutorials on how to do this are beyond the scope of this repository. If you go through and ensure that you have legitimate values for each of the environmental variables, you will be well on your way.
+3. Open http://localhost:3000
 
-### 3. Database Schema
+## Required environment variables
 
-This app is extremely simple. Supabase automatically creates an Auth table for you. This is all you need for the app to work.
+See `.env.example` for the full list. Key ones:
 
-### 4. Name
+- `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `NEXT_PUBLIC_BASE_URL` (e.g. `http://localhost:3000`)
 
-This app assumes the product name is "Caster". You can search and replace all instances of the word "Caster" in this repo with your own product name.
+## Supabase
 
-## Tech Stack
+- Client and server helpers live under `src/lib/supabase/`.
+- Provide the public anon keys for client-side use and the service role key for server-only operations.
 
-- NextJS
-- Typescript
-- Supabase
-- Google OAuth
+## Styling & Design System
 
-## Pages
+- We use Tailwind and Shadcn for our UI
 
-### General
+## CI / Formatting
 
-- Home/Landing Page
-- Login
-- Profile (must be logged in)
-- Coming Soon
+- GitHub Actions workflow in `.github/workflows/ci.yml` runs build and basic checks.
+- Formatting: `npm run format` (Prettier).
+- Linting: `npm run lint:fix` (ESLint).
 
-### Legal
+## Notes / Next steps
 
-- Privacy Policy
-- Terms and Conditions
-
-### Product
-
-- Version
+- Need to add Stripe support for tiered memberships
+- Recommended deployment: Vercel. Set env vars in the Vercel dashboard and point the Stripe webhook to your production URL.
