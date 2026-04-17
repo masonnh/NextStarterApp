@@ -8,7 +8,7 @@ import useUserSession from '@/lib/hooks/useUserSession';
 import SignOutButton from '../auth/SignOutButton';
 
 const Navbar: React.FC = () => {
-  const { user, session } = useUserSession();
+  const { user } = useUserSession();
 
   return (
     <nav className="navbar">

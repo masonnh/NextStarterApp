@@ -3,6 +3,7 @@
 // Usage: <InfoCard title='Create Effortless Forecasts' accent='Effortless' text='Connect your QuickBooks, Track your daily cashflow, Automate your forecasts' imgSrc='img/LineGraph.svg' imgAlt='Cashflow Line Graph' default={true} />
 
 import React from 'react';
+import Image from 'next/image';
 
 interface InfoCardProps {
   title: string;
@@ -43,7 +44,12 @@ export default function InfoCard(props: InfoCardProps) {
       {props.default === true && (
         <div className="info-content-container">
           <div className="info-visual">
-            <img src={props.imgSrc} alt={props.imgAlt} />
+            <Image
+              src={props.imgSrc}
+              alt={props.imgAlt}
+              width={24}
+              height={24}
+            />
           </div>
         </div>
       )}
@@ -56,7 +62,12 @@ export default function InfoCard(props: InfoCardProps) {
       {props.default === false && (
         <div className="info-content-container">
           <div className="info-visual">
-            <img src={props.imgSrc} alt={props.imgAlt} />
+            <Image
+              src={props.imgSrc}
+              alt={props.imgAlt}
+              width={24}
+              height={24}
+            />
           </div>
         </div>
       )}

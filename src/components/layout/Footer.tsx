@@ -1,20 +1,16 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 
 const Footer: React.FC = () => {
   // State to track the current theme
-  const [darkMode, setDarkMode] = useState(false);
-
-  // On mount, check the saved theme from localStorage
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      setDarkMode(true);
-      document.body.classList.add('dark-mode');
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('theme') === 'dark';
     }
-  }, []);
+    return false;
+  });
 
   // Function to toggle theme
   const toggleTheme = () => {

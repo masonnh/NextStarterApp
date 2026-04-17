@@ -3,63 +3,121 @@ import nextPlugin from '@next/eslint-plugin-next';
 import prettier from 'eslint-config-prettier';
 import reactHooks from 'eslint-plugin-react-hooks';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default [
-  // Base JS recommended rules
+  /**
+   * Global ignores
+   */
+  {
+    ignores: [
+      '.next/**',
+      'node_modules/**',
+      'dist/**',
+      'build/**',
+      'coverage/**',
+      '*.config.js',
+      '*.config.cjs',
+    ],
+  },
+
+  /**
+   * Base JS rules
+   */
   js.configs.recommended,
 
-  // TypeScript support
+  /**
+   * TypeScript rules
+   */
   ...tseslint.configs.recommended,
 
-  // Next.js rules
+  /**
+   * App source files
+   */
   {
+    files: ['**/*.{js,mjs,cjs,ts,tsx,jsx}'],
+
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
+
     plugins: {
       '@next/next': nextPlugin,
-      'simple-import-sort': simpleImportSort,
       'react-hooks': reactHooks,
+      'simple-import-sort': simpleImportSort,
     },
+
     rules: {
+      /**
+       * Next.js
+       */
       ...nextPlugin.configs.recommended.rules,
       ...nextPlugin.configs['core-web-vitals'].rules,
+
+      /**
+       * React Hooks
+       */
       ...reactHooks.configs.recommended.rules,
+
+      /**
+       * Import Sorting
+       */
       'simple-import-sort/imports': [
         'error',
         {
           groups: [
-            // 1. Node builtins
-            ['^node:', `^(fs|path|os|crypto|util)$`],
+            // Side effects (CSS etc)
+            ['^\\u0000'],
 
-            // 2. React / Next
-            ['^react', '^next'],
+            // Node built-ins
+            ['^node:', '^(fs|path|os|crypto|util)$'],
 
-            // 3. External packages
+            // React / Next
+            ['^react$', '^react-dom$', '^next'],
+
+            // External packages
             ['^@?\\w'],
 
-            // 4. Internal aliases (your "@/..." paths)
+            // Internal aliases
             ['^@/'],
 
-            // 5. Relative imports
-            ['^\\.'],
+            // Parent imports
+            ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
 
-            // 6. Side effect imports (CSS, etc.)
-            ['^\\u0000'],
+            // Same-folder imports
+            ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
           ],
         },
       ],
+
       'simple-import-sort/exports': 'error',
-    },
-  },
 
-  // Disable ESLint rules that conflict with Prettier
-  prettier,
+      /**
+       * Cleanup
+       */
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
 
-  // Your custom rules
-  {
-    rules: {
-      'no-unused-vars': 'warn',
-      '@typescript-eslint/no-unused-vars': 'warn',
+      /**
+       * Hooks
+       */
       'react-hooks/exhaustive-deps': 'warn',
     },
   },
+
+  /**
+   * Prettier LAST
+   */
+  prettier,
 ];
