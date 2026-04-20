@@ -1,20 +1,20 @@
 'use client';
 
-import Button from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
 
 import { logout } from './actions';
 
-function SignOutButton() {
+interface SignOutButtonProps {
+  className?: string;
+}
+
+function SignOutButton({ className }: SignOutButtonProps) {
   async function handleLogout() {
     logout();
   }
 
   return (
-    <Button
-      onClick={handleLogout}
-      className="button button-contained"
-      variant="contained"
-    >
+    <Button onClick={handleLogout} className={className}>
       Sign out
     </Button>
   );

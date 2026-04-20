@@ -5,6 +5,8 @@ import Image from 'next/image';
 
 import { Provider } from '@supabase/supabase-js';
 
+import { Button } from '@/components/ui/Button';
+
 import { login } from './actions';
 
 interface OAuthLoginButtonProps {
@@ -23,18 +25,17 @@ function OAuthLoginButton({
   }
 
   return (
-    <button className="button-oauth" onClick={handleClickLoginButton}>
-      <div className="oauth-padding">
-        <Image
-          src={logo}
-          alt="oAuthLogo"
-          className="oauth-logo"
-          width={24}
-          height={24}
-        />
+    <Button
+      type="button"
+      variant="outline"
+      className="w-full justify-start"
+      onClick={handleClickLoginButton}
+    >
+      <span className="inline-flex items-center gap-3">
+        <Image src={logo} alt="oAuthLogo" width={24} height={24} />
         {buttonText}
-      </div>
-    </button>
+      </span>
+    </Button>
   );
 }
 

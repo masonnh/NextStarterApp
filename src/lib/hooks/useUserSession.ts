@@ -4,13 +4,15 @@ import { useEffect, useState } from 'react';
 
 import { Session, User } from '@supabase/supabase-js';
 
-import { supabase } from '@/lib/supabase/client';
+import { createClient } from '@/lib/supabase/client';
 
 const useUserSession = () => {
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
+    const supabase = createClient();
+
     const checkUserSession = async () => {
       const {
         data: { user },

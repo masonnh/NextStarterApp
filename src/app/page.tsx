@@ -6,10 +6,8 @@ import PromoCard from '@/components/page/PromoCard';
 
 export default function Home() {
   return (
-    <>
-      <div className="home-container">
-        <Hero />
-      </div>
+    <div className="pb-8">
+      <Hero />
       <InfoCard
         title="Create Effortless Forecasts"
         accent="Effortless"
@@ -35,11 +33,12 @@ export default function Home() {
         default={true}
       />
       <PromoCard />
-    </>
+    </div>
   );
 }
 
 export const metadata: Metadata = {
-  title: 'Caster',
-  description: 'Caster description',
+  title: 'NextStarterApp',
+  description:
+    'A template for building SaaS apps with Next.js, Tailwind, and Supabase.',
 };

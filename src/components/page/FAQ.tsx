@@ -1,9 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 
-import MinusIcon from '@/components/icons/MinusIcon';
-import PlusIcon from '@/components/icons/PlusIcon';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 interface Question {
   question: string;
@@ -14,36 +18,24 @@ interface FAQProps {
   faqs: Question[];
 }
 
-const FAQItem = (item: Question) => {
-  const question = item.question;
-  const answer = item.answer;
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleOpen = () => {
-    setIsOpen(!isOpen);
-  };
-
-  return (
-    <div className="faq-item">
-      <div className="faq-question-container" onClick={toggleOpen}>
-        <h3>{question}</h3>
-        {isOpen ? <MinusIcon /> : <PlusIcon />}
-      </div>
-      {isOpen && <p>{answer}</p>}
-    </div>
-  );
-};
-
 export default function FAQ(props: FAQProps) {
   return (
-    <div className="faq-container">
-      <h3>Frequently Asked Questions</h3>
-      <div className="faq-list">
+    <section className="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6">
+      <h3 className="font-raleway text-2xl font-semibold tracking-tight sm:text-3xl">
+        Frequently Asked Questions
+      </h3>
+      <Accordion
+        type="single"
+        collapsible
+        className="mt-6 rounded-lg border px-4"
+      >
         {props.faqs.map((faq: Question, index: number) => (
-          <FAQItem key={index} {...faq} />
+          <AccordionItem key={index} value={`faq-${index}`}>
+            <AccordionTrigger>{faq.question}</AccordionTrigger>
+            <AccordionContent>{faq.answer}</AccordionContent>
+          </AccordionItem>
         ))}
-      </div>
-    </div>
+      </Accordion>
+    </section>
   );
 }

@@ -1,5 +1,4 @@
-import '@/styles/style.css';
-import '@/styles/components/auth/oauth-login-button.css';
+import '@/app/global.css';
 
 import { Inter, Raleway, Roboto } from 'next/font/google';
 
@@ -33,21 +32,20 @@ export default function RootLayout({
         <meta charSet="UTF-8" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        />
       </head>
       <body
         className={`
           ${inter.variable}
           ${raleway.variable}
           ${roboto.variable}
+          min-h-screen antialiased
         `}
       >
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <div className="flex min-h-screen flex-col">
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

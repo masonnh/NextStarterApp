@@ -6,9 +6,9 @@ import { createClient } from '@/lib/supabase/client';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
-const supabase = createClient();
-
 export async function login(provider: Provider) {
+  const supabase = createClient();
+
   try {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: provider,
@@ -25,6 +25,8 @@ export async function login(provider: Provider) {
 }
 
 export async function logout() {
+  const supabase = createClient();
+
   try {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;

@@ -1,66 +1,102 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
+import { Moon, Sun } from 'lucide-react';
+
+import { Button } from '@/components/ui/Button';
+import { Separator } from '@/components/ui/separator';
+
 const Footer: React.FC = () => {
-  // State to track the current theme
   const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') === 'dark';
+    if (typeof window === 'undefined') {
+      return false;
     }
-    return false;
+
+    const storedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    ).matches;
+    return storedTheme ? storedTheme === 'dark' : prefersDark;
   });
 
-  // Function to toggle theme
-  const toggleTheme = () => {
-    setDarkMode(!darkMode);
-    if (!darkMode) {
-      document.body.classList.add('dark-mode');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.body.classList.remove('dark-mode');
-      localStorage.setItem('theme', 'light');
-    }
-  };
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', darkMode);
+    localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
 
   return (
-    <footer className="footer">
-      <div className="footer-container">
-        {/*Left Section: Logo and Copyright*/}
-        <div className="footer-left">
-          <Link className="logo-text" href="/">
-            caster
-          </Link>
-          <p>&copy; 2024 Caster. All rights reserved.</p>
-        </div>
-
-        {/*Right Section: Navigation Links*/}
-        <div className="footer-right">
-          <div className="footer-column">
-            <p>Product</p>
-            <span
-              className="theme-toggle"
-              onClick={toggleTheme}
-              aria-label="Toggle Dark/Light Mode"
+    <footer className="border-t bg-muted/30">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-10 sm:px-6">
+        <div className="flex flex-col gap-8 md:flex-row md:justify-between">
+          <div className="space-y-3">
+            <Link
+              className="font-raleway text-2xl font-semibold tracking-tight"
+              href="/"
             >
-              {darkMode ? 'Light Mode' : 'Dark Mode'}
-            </span>
-            <Link href={'/pricing'}>Pricing</Link>
+              NextStarterApp
+            </Link>
+            <p className="text-sm text-muted-foreground">
+              &copy; {new Date().getFullYear()} NextStarterApp. All rights
+              reserved.
+            </p>
           </div>
 
-          <div className="footer-column">
-            <p>Company</p>
-            <Link href={'/about'}>About</Link>
-            <Link href={'mailto:support@caster.com'}>Contact</Link>
-          </div>
+          <div className="grid grid-cols-1 gap-8 text-sm sm:grid-cols-3">
+            <div className="space-y-2">
+              <p className="font-medium">Product</p>
+              <Button
+                type="button"
+                variant="ghost"
+                className="h-auto justify-start px-0 text-muted-foreground hover:text-foreground"
+                onClick={() => setDarkMode((value) => !value)}
+                aria-label="Toggle dark mode"
+              >
+                {darkMode ? (
+                  <Sun className="size-4" />
+                ) : (
+                  <Moon className="size-4" />
+                )}
+                <span>{darkMode ? 'Light mode' : 'Dark mode'}</span>
+              </Button>
+              <Link
+                className="block text-muted-foreground hover:text-foreground"
+                href="/pricing"
+              >
+                Pricing
+              </Link>
+            </div>
 
-          <div className="footer-column">
-            <p>Legal</p>
-            <Link href={'/privacy'}>Privacy Policy</Link>
-            <Link href={'/terms'}>Terms and Conditions</Link>
+            <div className="space-y-2">
+              <p className="font-medium">Company</p>
+              <Link
+                className="block text-muted-foreground hover:text-foreground"
+                href="mailto:support@NextStarterApp.com"
+              >
+                Contact
+              </Link>
+            </div>
+
+            <div className="space-y-2">
+              <p className="font-medium">Legal</p>
+              <Link
+                className="block text-muted-foreground hover:text-foreground"
+                href="/privacy"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                className="block text-muted-foreground hover:text-foreground"
+                href="/terms"
+              >
+                Terms and Conditions
+              </Link>
+            </div>
           </div>
         </div>
+
+        <Separator />
       </div>
     </footer>
   );

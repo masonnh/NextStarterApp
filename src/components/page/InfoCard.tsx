@@ -5,6 +5,8 @@
 import React from 'react';
 import Image from 'next/image';
 
+import { Card, CardContent } from '@/components/ui/card';
+
 interface InfoCardProps {
   title: string;
   accent?: string;
@@ -24,7 +26,7 @@ export default function InfoCard(props: InfoCardProps) {
             word === props.accent ? (
               <span key={index}>
                 {index > 0 ? ' ' : ''}
-                <span className="text-accent">{word}</span>
+                <span className="text-primary">{word}</span>
               </span>
             ) : (
               <span key={index}>
@@ -40,37 +42,43 @@ export default function InfoCard(props: InfoCardProps) {
   };
 
   return (
-    <div className={`info-card ${props.default === false ? '' : 'purple-bg'}`}>
-      {props.default === true && (
-        <div className="info-content-container">
-          <div className="info-visual">
-            <Image
-              src={props.imgSrc}
-              alt={props.imgAlt}
-              width={24}
-              height={24}
-            />
+    <section className="mx-auto w-full max-w-6xl px-4 py-4 sm:px-6">
+      <Card className={props.default ? 'bg-muted/40' : ''}>
+        <CardContent className="grid items-center gap-6 p-6 md:grid-cols-2 md:p-8">
+          {props.default && (
+            <div className="order-2 flex justify-center md:order-1">
+              <Image
+                src={props.imgSrc}
+                alt={props.imgAlt}
+                width={300}
+                height={200}
+                className="h-auto w-full max-w-xs"
+              />
+            </div>
+          )}
+
+          <div
+            className={`space-y-4 ${props.default ? 'order-1 md:order-2' : 'order-1'}`}
+          >
+            <div className="font-raleway text-2xl font-semibold tracking-tight sm:text-3xl">
+              {renderTitle()}
+            </div>
+            <p className="text-base text-muted-foreground">{props.text}</p>
           </div>
-        </div>
-      )}
-      <div className="info-content-container">
-        <div className="info-text">
-          {renderTitle()}
-          <p>{props.text}</p>
-        </div>
-      </div>
-      {props.default === false && (
-        <div className="info-content-container">
-          <div className="info-visual">
-            <Image
-              src={props.imgSrc}
-              alt={props.imgAlt}
-              width={24}
-              height={24}
-            />
-          </div>
-        </div>
-      )}
-    </div>
+
+          {!props.default && (
+            <div className="order-2 flex justify-center">
+              <Image
+                src={props.imgSrc}
+                alt={props.imgAlt}
+                width={300}
+                height={200}
+                className="h-auto w-full max-w-xs"
+              />
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </section>
   );
 }
