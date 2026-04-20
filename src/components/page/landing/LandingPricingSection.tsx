@@ -8,7 +8,7 @@ export default function LandingPricingSection() {
 
   return (
     <LandingSectionShell id="pricing" title="Pricing" subtitle={pricing.title}>
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-slate-700 dark:bg-slate-900/70 md:grid-cols-3 md:p-6">
         {pricing.plans.map((plan) => (
           <PricingCard key={plan.planName} {...plan} />
         ))}
