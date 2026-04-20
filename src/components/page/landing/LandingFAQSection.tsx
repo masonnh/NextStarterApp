@@ -5,8 +5,8 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 
-import LandingSectionShell from './LandingSectionShell';
 import { landingContent } from './landing-content';
+import LandingSectionShell from './LandingSectionShell';
 
 export default function LandingFAQSection() {
   const { faq } = landingContent;

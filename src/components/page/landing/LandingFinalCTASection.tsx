@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/card';
 
-import LandingSectionShell from './LandingSectionShell';
 import { landingContent } from './landing-content';
+import LandingSectionShell from './LandingSectionShell';
 
 export default function LandingFinalCTASection() {
   const { finalCta } = landingContent;

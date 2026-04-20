@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-import LandingSectionShell from './LandingSectionShell';
 import { landingContent } from './landing-content';
+import LandingSectionShell from './LandingSectionShell';
 
 function initialsFromName(name: string) {
   return name

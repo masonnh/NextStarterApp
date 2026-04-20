@@ -2,8 +2,8 @@ import { ArrowRight } from 'lucide-react';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-import LandingSectionShell from './LandingSectionShell';
 import { landingContent } from './landing-content';
+import LandingSectionShell from './LandingSectionShell';
 
 export default function LandingHowItWorksSection() {
   const { howItWorks } = landingContent;

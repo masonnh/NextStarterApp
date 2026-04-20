@@ -1,7 +1,7 @@
 import PricingCard from '@/components/page/landing/LandingPricingCard';
 
-import LandingSectionShell from './LandingSectionShell';
 import { landingContent } from './landing-content';
+import LandingSectionShell from './LandingSectionShell';
 
 export default function LandingPricingSection() {
   const { pricing } = landingContent;

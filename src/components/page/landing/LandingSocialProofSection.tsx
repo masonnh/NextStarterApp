@@ -1,7 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 
-import LandingSectionShell from './LandingSectionShell';
 import { landingContent } from './landing-content';
+import LandingSectionShell from './LandingSectionShell';
 
 export default function LandingSocialProofSection() {
   const { socialProof } = landingContent;
