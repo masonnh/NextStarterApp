@@ -17,7 +17,9 @@ export default function LandingFinalCTASection() {
             <h3 className="font-raleway text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
               {finalCta.title}
             </h3>
-            <p className="text-slate-600 dark:text-slate-300">{finalCta.subtitle}</p>
+            <p className="text-slate-600 dark:text-slate-300">
+              {finalCta.subtitle}
+            </p>
           </div>
           <Button
             asChild

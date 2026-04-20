@@ -42,7 +42,10 @@ export default function PricingCard(props: PricingCardProps) {
           <span className="text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
             {props.price}
           </span>
-          <span className="text-slate-500 dark:text-slate-400"> / {props.period}</span>
+          <span className="text-slate-500 dark:text-slate-400">
+            {' '}
+            / {props.period}
+          </span>
         </CardDescription>
       </CardHeader>
 

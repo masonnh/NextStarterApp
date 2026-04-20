@@ -50,7 +50,9 @@ export default function LandingHeroSection() {
 
         <Card className="border-violet-100 bg-white/95 shadow-xl shadow-violet-100/60 dark:border-violet-500/30 dark:bg-slate-900/90 dark:shadow-violet-900/30">
           <CardHeader className="border-b border-slate-100 dark:border-slate-800">
-            <CardTitle className="text-slate-900 dark:text-slate-100">Why teams pick NextStarterApp</CardTitle>
+            <CardTitle className="text-slate-900 dark:text-slate-100">
+              Why teams pick NextStarterApp
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-4 text-sm text-slate-600 dark:text-slate-300">

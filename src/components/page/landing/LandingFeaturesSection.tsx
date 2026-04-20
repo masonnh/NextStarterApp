@@ -28,10 +28,14 @@ export default function LandingFeaturesSection() {
               }`}
             />
             <CardHeader>
-              <CardTitle className="text-xl text-slate-900 dark:text-slate-100">{item.title}</CardTitle>
+              <CardTitle className="text-xl text-slate-900 dark:text-slate-100">
+                {item.title}
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">{item.benefit}</p>
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                {item.benefit}
+              </p>
             </CardContent>
           </Card>
         ))}

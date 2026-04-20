@@ -20,12 +20,17 @@ export default function LandingSocialProofSection() {
     >
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {socialProof.metrics.map((metric, index) => (
-          <Card key={metric.label} className={cardStyles[index % cardStyles.length]}>
+          <Card
+            key={metric.label}
+            className={cardStyles[index % cardStyles.length]}
+          >
             <CardContent className="space-y-2 py-6">
               <p className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
                 {metric.value}
               </p>
-              <p className="text-sm font-medium text-slate-600 dark:text-slate-300">{metric.label}</p>
+              <p className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                {metric.label}
+              </p>
             </CardContent>
           </Card>
         ))}
