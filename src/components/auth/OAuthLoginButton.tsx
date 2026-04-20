@@ -28,7 +28,7 @@ function OAuthLoginButton({
     <Button
       type="button"
       variant="outline"
-      className="w-full justify-start"
+      className="w-full justify-start border-violet-200 bg-violet-50/60 text-slate-900 hover:bg-violet-100 dark:border-violet-500/40 dark:bg-violet-500/10 dark:text-slate-100 dark:hover:bg-violet-500/20"
       onClick={handleClickLoginButton}
     >
       <span className="inline-flex items-center gap-3">

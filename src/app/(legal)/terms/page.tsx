@@ -56,16 +56,18 @@ export default function TermsAndConditions() {
 
   return (
     <section className="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6">
-      <Card>
+      <Card className="border-violet-200 bg-white/95 shadow-lg shadow-violet-100/50 dark:border-violet-500/30 dark:bg-slate-900/90 dark:shadow-violet-900/30">
         <CardHeader>
-          <CardTitle className="font-raleway text-3xl tracking-tight">
+          <CardTitle className="font-raleway text-3xl tracking-tight text-slate-900 dark:text-slate-100">
             Terms and Conditions
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           {sections.map((section) => (
             <section key={section.title} className="space-y-2">
-              <h2 className="text-xl font-semibold">{section.title}</h2>
+              <h2 className="text-xl font-semibold text-violet-700 dark:text-violet-300">
+                {section.title}
+              </h2>
               <p className="text-muted-foreground">{section.body}</p>
             </section>
           ))}

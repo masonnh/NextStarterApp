@@ -27,17 +27,17 @@ const Footer: React.FC = () => {
   }, [darkMode]);
 
   return (
-    <footer className="border-t bg-muted/30">
+    <footer className="border-t border-slate-200/80 bg-[linear-gradient(180deg,rgba(109,40,217,0.05),rgba(22,163,74,0.04),rgba(250,204,21,0.06))] dark:border-slate-800 dark:bg-[linear-gradient(180deg,rgba(109,40,217,0.16),rgba(22,163,74,0.08),rgba(250,204,21,0.1))]">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-10 sm:px-6">
         <div className="flex flex-col gap-8 md:flex-row md:justify-between">
           <div className="space-y-3">
             <Link
-              className="font-raleway text-2xl font-semibold tracking-tight"
+              className="bg-gradient-to-r from-violet-600 via-emerald-500 to-amber-500 bg-clip-text font-raleway text-2xl font-semibold tracking-tight text-transparent"
               href="/"
             >
               NextStarterApp
             </Link>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-slate-600 dark:text-slate-300">
               &copy; {new Date().getFullYear()} NextStarterApp. All rights
               reserved.
             </p>
@@ -45,11 +45,13 @@ const Footer: React.FC = () => {
 
           <div className="grid grid-cols-1 gap-8 text-sm sm:grid-cols-3">
             <div className="space-y-2">
-              <p className="font-medium">Product</p>
+              <p className="font-medium text-slate-900 dark:text-slate-100">
+                Product
+              </p>
               <Button
                 type="button"
                 variant="ghost"
-                className="h-auto justify-start px-0 text-muted-foreground hover:text-foreground"
+                className="h-auto justify-start px-0 text-slate-600 hover:text-violet-700 dark:text-slate-300 dark:hover:text-violet-300"
                 onClick={() => setDarkMode((value) => !value)}
                 aria-label="Toggle dark mode"
               >
@@ -61,7 +63,7 @@ const Footer: React.FC = () => {
                 <span>{darkMode ? 'Light mode' : 'Dark mode'}</span>
               </Button>
               <Link
-                className="block text-muted-foreground hover:text-foreground"
+                className="block text-slate-600 hover:text-violet-700 dark:text-slate-300 dark:hover:text-violet-300"
                 href="/pricing"
               >
                 Pricing
@@ -69,9 +71,11 @@ const Footer: React.FC = () => {
             </div>
 
             <div className="space-y-2">
-              <p className="font-medium">Company</p>
+              <p className="font-medium text-slate-900 dark:text-slate-100">
+                Company
+              </p>
               <Link
-                className="block text-muted-foreground hover:text-foreground"
+                className="block text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-300"
                 href="mailto:support@NextStarterApp.com"
               >
                 Contact
@@ -79,15 +83,17 @@ const Footer: React.FC = () => {
             </div>
 
             <div className="space-y-2">
-              <p className="font-medium">Legal</p>
+              <p className="font-medium text-slate-900 dark:text-slate-100">
+                Legal
+              </p>
               <Link
-                className="block text-muted-foreground hover:text-foreground"
+                className="block text-slate-600 hover:text-amber-700 dark:text-slate-300 dark:hover:text-amber-300"
                 href="/privacy"
               >
                 Privacy Policy
               </Link>
               <Link
-                className="block text-muted-foreground hover:text-foreground"
+                className="block text-slate-600 hover:text-amber-700 dark:text-slate-300 dark:hover:text-amber-300"
                 href="/terms"
               >
                 Terms and Conditions
@@ -96,7 +102,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <Separator />
+        <Separator className="bg-slate-300/70 dark:bg-slate-700" />
       </div>
     </footer>
   );
