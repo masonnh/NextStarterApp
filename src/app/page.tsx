@@ -1,38 +1,48 @@
 import { Metadata } from 'next';
 
-import Hero from '@/components/page/Hero';
-import InfoCard from '@/components/page/InfoCard';
-import PromoCard from '@/components/page/PromoCard';
+import LandingFAQSection from '@/components/page/landing/LandingFAQSection';
+import LandingFeaturesSection from '@/components/page/landing/LandingFeaturesSection';
+import LandingFinalCTASection from '@/components/page/landing/LandingFinalCTASection';
+import LandingHeroSection from '@/components/page/landing/LandingHeroSection';
+import LandingHowItWorksSection from '@/components/page/landing/LandingHowItWorksSection';
+import LandingPricingSection from '@/components/page/landing/LandingPricingSection';
+import LandingProblemSection from '@/components/page/landing/LandingProblemSection';
+import LandingSocialProofSection from '@/components/page/landing/LandingSocialProofSection';
+import LandingTestimonialsSection from '@/components/page/landing/LandingTestimonialsSection';
+
+const sectionComponents = {
+  hero: LandingHeroSection,
+  socialProof: LandingSocialProofSection,
+  problemPain: LandingProblemSection,
+  howItWorks: LandingHowItWorksSection,
+  featuresBenefits: LandingFeaturesSection,
+  testimonials: LandingTestimonialsSection,
+  pricing: LandingPricingSection,
+  faq: LandingFAQSection,
+  finalCta: LandingFinalCTASection,
+} as const;
+
+type LandingSectionKey = keyof typeof sectionComponents;
+
+const enabledSections: LandingSectionKey[] = [
+  'hero',
+  'socialProof',
+  'problemPain',
+  'howItWorks',
+  'featuresBenefits',
+  'testimonials',
+  'pricing',
+  'faq',
+  'finalCta',
+];
 
 export default function Home() {
   return (
-    <div className="pb-8">
-      <Hero />
-      <InfoCard
-        title="Create Effortless Forecasts"
-        accent="Effortless"
-        text="Connect your QuickBooks, track your daily cashflow, and automate your forecasts"
-        imgSrc="img/LineGraph.svg"
-        imgAlt="Cashflow Line Graph"
-        default={true}
-      />
-      <InfoCard
-        title="Generate Real-Time Dashboards"
-        accent="Real-Time"
-        text="Understand trends at a glance, updated daily with real-time data, and save time and money"
-        imgSrc="img/PieChart.svg"
-        imgAlt="Cashflow Pie Chart"
-        default={false}
-      />
-      <InfoCard
-        title="Gain AI Assisted Insights"
-        accent="AI Assisted"
-        text="24/7 access to a cashflow guru, customized insights based on your data, and learn best practices your competitors use"
-        imgSrc="img/ChatbotButton.svg"
-        imgAlt="Chatbot button"
-        default={true}
-      />
-      <PromoCard />
+    <div className="pb-10">
+      {enabledSections.map((sectionKey) => {
+        const SectionComponent = sectionComponents[sectionKey];
+        return <SectionComponent key={sectionKey} />;
+      })}
     </div>
   );
 }
