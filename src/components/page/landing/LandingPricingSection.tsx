@@ -1,4 +1,4 @@
-import PricingCard from '@/components/page/PricingCard';
+import PricingCard from '@/components/page/landing/LandingPricingCard';
 
 import LandingSectionShell from './LandingSectionShell';
 import { landingContent } from './landing-content';
