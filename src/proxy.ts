@@ -4,64 +4,28 @@ import { updateSession } from '@/lib/supabase/middleware';
 import { createClient } from '@/lib/supabase/server';
 
 export async function proxy(request: NextRequest) {
-  // Create Supabase client for SSR
-  const supabase = await createClient();
+  // Refresh auth cookies/session for all matched routes.
+  const sessionResponse = await updateSession(request);
 
-  // Get user session
+  // Define protected routes for this starter template.
+  const isProtectedRoute = request.nextUrl.pathname.startsWith('/profile');
+  if (!isProtectedRoute) {
+    return sessionResponse;
+  }
+
+  const supabase = await createClient();
   const {
     data: { session },
   } = await supabase.auth.getSession();
 
-  // Create a response object
-  const response = NextResponse.next({
-    request: {
-      headers: request.headers,
-    },
-  });
-
-  // Handle API routes
-  if (request.nextUrl.pathname.startsWith('/api')) {
-    if (!session) {
-      console.error('No session found for API route');
-      return response;
-    }
-
-    const user = session.user;
-    const user_id = user.id;
-
-    // Fetch company_id from user_company table
-    const { data, error: companyError } = await supabase
-      .from('user_company')
-      .select('company_id')
-      .eq('user_id', user_id)
-      .single();
-
-    if (companyError) {
-      console.error('Error fetching company:', companyError.message);
-      return response;
-    }
-
-    const company_id = data?.company_id?.toString();
-
-    if (company_id && user_id) {
-      response.headers.set('company_id', company_id);
-      response.headers.set('user_id', user_id);
-    }
-  } else {
-    // define protected routes (user must be logged in to access)
-    const isProtectedRoute = request.nextUrl.pathname.startsWith('/profile');
-
-    if (!session && isProtectedRoute) {
-      const redirectUrl = request.nextUrl.clone();
-      redirectUrl.pathname = '/login';
-      return NextResponse.redirect(redirectUrl);
-    }
+  // Redirect unauthenticated users away from protected routes.
+  if (!session) {
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.pathname = '/login';
+    return NextResponse.redirect(redirectUrl);
   }
 
-  // Update the session
-  const newResponse = await updateSession(request);
-
-  return newResponse;
+  return sessionResponse;
 }
 
 export const config = {
