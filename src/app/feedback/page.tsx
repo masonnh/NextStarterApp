@@ -1,4 +1,4 @@
-import FeedbackBoardClient from '@/components/page/feedback/FeedbackBoardClient';
+import FeedbackBoardLayout from '@/components/page/feedback/FeedbackBoardLayout';
 import { createClient } from '@/lib/supabase/server';
 
 const PAGE_SIZE = 10;
@@ -9,6 +9,7 @@ type FeatureRequestRow = {
   id: number;
   title: string;
   description: string;
+  status: string;
   created_at: string;
   author_id: string;
   author_name: string;
@@ -74,7 +75,7 @@ export default async function FeedbackPage({
 
   let requestsQuery = supabase
     .from('feature_requests')
-    .select('id, title, description, created_at, author_id, author_name')
+    .select('id, title, description, status, created_at, author_id, author_name')
     .limit(500);
 
   if (query.length > 0) {
@@ -156,6 +157,7 @@ export default async function FeedbackPage({
       id: request.id,
       title: request.title,
       description: request.description,
+      status: request.status,
       createdAt: request.created_at,
       authorName: request.author_name,
       authorId: request.author_id,
@@ -173,7 +175,23 @@ export default async function FeedbackPage({
     };
   });
 
-  const sortedRequests = [...boardRequests].sort((a, b) => {
+  const statusFilter = getParamValue(resolvedSearchParams, 'status').toLowerCase();
+  const validStatuses = ['open', 'planned', 'in-progress', 'completed', 'declined'];
+  const selectedStatus = validStatuses.includes(statusFilter) ? statusFilter : '';
+
+  const statusCounts = {
+    open: boardRequests.filter((r) => r.status === 'open').length,
+    planned: boardRequests.filter((r) => r.status === 'planned').length,
+    'in-progress': boardRequests.filter((r) => r.status === 'in-progress').length,
+    completed: boardRequests.filter((r) => r.status === 'completed').length,
+    declined: boardRequests.filter((r) => r.status === 'declined').length,
+  };
+
+  let filteredByStatus = selectedStatus
+    ? boardRequests.filter((r) => r.status === selectedStatus)
+    : boardRequests;
+
+  const sortedRequests = [...filteredByStatus].sort((a, b) => {
     if (sort === 'oldest') {
       return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
     }
@@ -209,28 +227,18 @@ export default async function FeedbackPage({
   );
 
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(120%_120%_at_50%_0%,rgba(109,40,217,0.14),rgba(255,255,255,0.9)_45%,rgba(16,185,129,0.12)_100%)] px-4 py-16 sm:px-6 dark:bg-[radial-gradient(120%_120%_at_50%_0%,rgba(109,40,217,0.28),rgba(2,6,23,0.96)_45%,rgba(16,185,129,0.18)_100%)]">
-      <div className="mx-auto w-full max-w-6xl space-y-8">
-        <div className="space-y-3 text-center">
-          <h1 className="font-raleway text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl dark:text-slate-100">
-            Feedback Board
-          </h1>
-          <p className="mx-auto max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
-            Public roadmap input for everyone to read. Active accounts can post
-            requests, vote, and discuss details.
-          </p>
-        </div>
-
-        <FeedbackBoardClient
-          requests={pagedRequests}
-          canInteract={Boolean(session)}
-          query={query}
-          sort={sort}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          totalItems={totalItems}
-        />
-      </div>
-    </section>
+    <>
+      <FeedbackBoardLayout
+        requests={pagedRequests}
+        canInteract={Boolean(session)}
+        query={query}
+        sort={sort}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        totalItems={totalItems}
+        statusCounts={statusCounts}
+        selectedStatus={selectedStatus}
+      />
+    </>
   );
 }

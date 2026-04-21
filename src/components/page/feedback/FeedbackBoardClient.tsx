@@ -94,6 +94,7 @@ export default function FeedbackBoardClient({
   const [selectedRequestId, setSelectedRequestId] = useState<number | null>(
     null,
   );
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   const selectedRequest = useMemo(
     () => requests.find((request) => request.id === selectedRequestId) ?? null,
@@ -139,60 +140,71 @@ export default function FeedbackBoardClient({
             </Button>
           </form>
 
-          <p className="pt-3 text-xs text-slate-500 dark:text-slate-400">
-            Showing {requests.length} of {totalItems} request
-            {totalItems === 1 ? '' : 's'}.
-          </p>
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-3">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              Showing {requests.length} of {totalItems} request
+              {totalItems === 1 ? '' : 's'}.
+            </p>
+            <Button
+              type="button"
+              onClick={() => setIsFormVisible((value) => !value)}
+              className="bg-violet-600 text-white hover:bg-violet-700 dark:bg-violet-500 dark:text-slate-950 dark:hover:bg-violet-400"
+            >
+              {isFormVisible ? 'Hide feedback form' : 'Give feedback'}
+            </Button>
+          </div>
         </CardContent>
       </Card>
 
-      <Card className="border-violet-200/60 bg-white/90 dark:border-violet-800/60 dark:bg-slate-950/75">
-        <CardHeader>
-          <CardTitle className="text-slate-900 dark:text-slate-100">
-            Leave a feature request
-          </CardTitle>
-          <CardDescription className="text-slate-600 dark:text-slate-300">
-            Share what should be built next. Signed-in users can post, vote, and
-            comment.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form action={createFeatureRequest} className="space-y-3">
-            <input
-              name="title"
-              placeholder="Feature title"
-              minLength={5}
-              maxLength={120}
-              required
-              disabled={!canInteract}
-              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-violet-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
-            />
-            <textarea
-              name="description"
-              placeholder="Describe the problem and ideal solution"
-              minLength={10}
-              maxLength={3000}
-              required
-              disabled={!canInteract}
-              className="min-h-28 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-violet-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
-            />
-            <div className="flex items-center justify-between gap-3">
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                {!canInteract
-                  ? 'Log in to submit a request.'
-                  : 'Public board. Your account is required to interact.'}
-              </p>
-              <Button
-                type="submit"
+      {isFormVisible ? (
+        <Card className="border-violet-200/60 bg-white/90 dark:border-violet-800/60 dark:bg-slate-950/75">
+          <CardHeader>
+            <CardTitle className="text-slate-900 dark:text-slate-100">
+              Leave a feature request
+            </CardTitle>
+            <CardDescription className="text-slate-600 dark:text-slate-300">
+              Share what should be built next. Signed-in users can post, vote,
+              and comment.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form action={createFeatureRequest} className="space-y-3">
+              <input
+                name="title"
+                placeholder="Feature title"
+                minLength={5}
+                maxLength={120}
+                required
                 disabled={!canInteract}
-                className="bg-violet-600 text-white hover:bg-violet-700 dark:bg-violet-500 dark:text-slate-950 dark:hover:bg-violet-400"
-              >
-                Submit request
-              </Button>
-            </div>
-          </form>
-        </CardContent>
-      </Card>
+                className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-violet-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+              />
+              <textarea
+                name="description"
+                placeholder="Describe the problem and ideal solution"
+                minLength={10}
+                maxLength={3000}
+                required
+                disabled={!canInteract}
+                className="min-h-28 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-violet-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+              />
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  {!canInteract
+                    ? 'Log in to submit a request.'
+                    : 'Public board. Your account is required to interact.'}
+                </p>
+                <Button
+                  type="submit"
+                  disabled={!canInteract}
+                  className="bg-violet-600 text-white hover:bg-violet-700 dark:bg-violet-500 dark:text-slate-950 dark:hover:bg-violet-400"
+                >
+                  Submit request
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+      ) : null}
 
       <div className="grid gap-4">
         {requests.length === 0 ? (
