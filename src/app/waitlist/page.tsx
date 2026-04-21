@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 
+import { joinWaitlist } from './actions';
+
 export default function WaitlistPage() {
   return (
     <section className="relative w-full overflow-hidden px-4 py-10 sm:px-6 sm:py-14">
@@ -22,9 +24,13 @@ export default function WaitlistPage() {
               Be the first to get updates, templates, and early feature drops.
             </p>
 
-            <form className="flex flex-col gap-3 sm:flex-row" action="#">
+            <form
+              className="flex flex-col gap-3 sm:flex-row"
+              action={joinWaitlist}
+            >
               <Input
                 type="email"
+                name="email"
                 required
                 placeholder="you@company.com"
                 className="h-11 border-emerald-200 bg-white/80 dark:border-emerald-500/30 dark:bg-slate-950/60"

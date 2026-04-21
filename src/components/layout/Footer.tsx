@@ -74,6 +74,12 @@ const Footer: React.FC = () => {
               >
                 Get Started
               </Link>
+              <Link
+                className="block text-slate-600 hover:text-violet-700 dark:text-slate-300 dark:hover:text-violet-300"
+                href="/waitlist"
+              >
+                Join Waitlist
+              </Link>
             </div>
 
             <div className="space-y-2">
