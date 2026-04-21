@@ -88,7 +88,7 @@ const Footer: React.FC = () => {
               </p>
               <Link
                 className="block text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-300"
-                href="mailto:support@NextStarterApp.com"
+                href="/contact"
               >
                 Contact
               </Link>
