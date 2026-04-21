@@ -25,6 +25,9 @@ const Navbar: React.FC = () => {
         </Link>
 
         <div className="hidden items-center gap-2 md:flex">
+          <Button asChild variant="ghost">
+            <Link href="/feedback">Feedback</Link>
+          </Button>
           {user ? (
             <>
               <Button asChild variant="ghost">
@@ -62,6 +65,9 @@ const Navbar: React.FC = () => {
               className="w-72 border-l border-slate-200 bg-white/95 dark:border-slate-800 dark:bg-slate-950/95"
             >
               <div className="mt-8 flex flex-col gap-2">
+                <Button asChild variant="ghost" className="justify-start">
+                  <Link href="/feedback">Feedback</Link>
+                </Button>
                 {user ? (
                   <>
                     <Button asChild variant="ghost" className="justify-start">

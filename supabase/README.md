@@ -18,6 +18,15 @@ This folder contains environment-portable SQL templates for NextStarterApp.
   - Written by waitlist form server action.
 - `public.contact_submissions`
   - Written by contact form server action.
+- `public.feature_requests`
+  - Read by public feedback board.
+  - Written by authenticated users creating requests.
+- `public.feature_request_votes`
+  - Read by public feedback board for vote totals.
+  - Upserted by authenticated users for upvote/downvote actions.
+- `public.feature_request_comments`
+  - Read by public feedback board detail popup.
+  - Written by authenticated users for threaded discussion.
 
 ## How to apply in a Supabase project
 
@@ -38,6 +47,19 @@ This folder contains environment-portable SQL templates for NextStarterApp.
 ## Notes on RLS policies
 
 - Public insert is enabled for waitlist/contact submissions (to support non-auth form usage).
+- Feedback board is public-read, authenticated-write:
+  - anonymous users can view requests, votes, and comments.
+  - only authenticated users can create requests, vote, or comment.
 - Consider adding anti-spam controls for production:
   - rate limits, captcha, honeypots, or Edge Function validation.
 - Management policies are scoped to `service_role` for admin-style operations.
+
+## Assumptions for feedback board
+
+- "Active account" is defined as a valid authenticated Supabase session.
+- Feedback actor identity is stored as:
+  - `author_id` (UUID from `auth.users`)
+  - `author_name` snapshot copied from user metadata/email at write time.
+- Display names do not automatically backfill if a user later changes profile data.
+- Optional feedback seeds are commented out because they require real UUIDs from
+  `auth.users` in each environment.
