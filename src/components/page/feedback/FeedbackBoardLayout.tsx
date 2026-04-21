@@ -7,7 +7,6 @@ import { MessageSquare, ThumbsDown, ThumbsUp, X } from 'lucide-react';
 
 import {
   addFeedbackComment,
-  castFeedbackVote,
   createFeatureRequest,
 } from '@/app/feedback/actions';
 import { Button } from '@/components/ui/Button';
@@ -76,7 +75,9 @@ type StatusKey = 'open' | 'planned' | 'in-progress' | 'completed' | 'declined';
 
 function getStatusIcon(status: string) {
   const iconMap: Record<StatusKey, React.ReactNode> = {
-    open: <div className="size-2 rounded-full bg-slate-400 dark:bg-slate-500" />,
+    open: (
+      <div className="size-2 rounded-full bg-slate-400 dark:bg-slate-500" />
+    ),
     planned: <div className="size-2 rounded-full bg-blue-500" />,
     'in-progress': <div className="size-2 rounded-full bg-violet-500" />,
     completed: <div className="size-2 rounded-full bg-emerald-500" />,
@@ -177,9 +178,7 @@ export default function FeedbackBoardLayout({
             variant="ghost"
             className="w-full justify-start text-base font-semibold text-slate-900 hover:bg-slate-100 dark:text-slate-100 dark:hover:bg-slate-800/60"
           >
-            <Link href="/feedback">
-              Create Request
-            </Link>
+            <Link href="/feedback">Create Request</Link>
           </Button>
         </div>
 
@@ -390,7 +389,12 @@ export default function FeedbackBoardLayout({
                   disabled={currentPage <= 1}
                 >
                   <Link
-                    href={buildBoardLink(currentPage - 1, query, sort, selectedStatus)}
+                    href={buildBoardLink(
+                      currentPage - 1,
+                      query,
+                      sort,
+                      selectedStatus,
+                    )}
                   >
                     Previous
                   </Link>
@@ -402,7 +406,12 @@ export default function FeedbackBoardLayout({
                   disabled={currentPage >= totalPages}
                 >
                   <Link
-                    href={buildBoardLink(currentPage + 1, query, sort, selectedStatus)}
+                    href={buildBoardLink(
+                      currentPage + 1,
+                      query,
+                      sort,
+                      selectedStatus,
+                    )}
                   >
                     Next
                   </Link>

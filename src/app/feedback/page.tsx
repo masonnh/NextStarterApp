@@ -75,7 +75,9 @@ export default async function FeedbackPage({
 
   let requestsQuery = supabase
     .from('feature_requests')
-    .select('id, title, description, status, created_at, author_id, author_name')
+    .select(
+      'id, title, description, status, created_at, author_id, author_name',
+    )
     .limit(500);
 
   if (query.length > 0) {
@@ -175,19 +177,31 @@ export default async function FeedbackPage({
     };
   });
 
-  const statusFilter = getParamValue(resolvedSearchParams, 'status').toLowerCase();
-  const validStatuses = ['open', 'planned', 'in-progress', 'completed', 'declined'];
-  const selectedStatus = validStatuses.includes(statusFilter) ? statusFilter : '';
+  const statusFilter = getParamValue(
+    resolvedSearchParams,
+    'status',
+  ).toLowerCase();
+  const validStatuses = [
+    'open',
+    'planned',
+    'in-progress',
+    'completed',
+    'declined',
+  ];
+  const selectedStatus = validStatuses.includes(statusFilter)
+    ? statusFilter
+    : '';
 
   const statusCounts = {
     open: boardRequests.filter((r) => r.status === 'open').length,
     planned: boardRequests.filter((r) => r.status === 'planned').length,
-    'in-progress': boardRequests.filter((r) => r.status === 'in-progress').length,
+    'in-progress': boardRequests.filter((r) => r.status === 'in-progress')
+      .length,
     completed: boardRequests.filter((r) => r.status === 'completed').length,
     declined: boardRequests.filter((r) => r.status === 'declined').length,
   };
 
-  let filteredByStatus = selectedStatus
+  const filteredByStatus = selectedStatus
     ? boardRequests.filter((r) => r.status === selectedStatus)
     : boardRequests;
 
