@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { updateSession } from '@/lib/supabase/middleware';
 import { createClient } from '@/lib/supabase/server';
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   // Create Supabase client for SSR
   const supabase = await createClient();
 
