@@ -20,7 +20,7 @@ const useUserSession = () => {
       } = await supabase.auth.getUser();
 
       if (userError) {
-        console.error('Error fetching user:', userError.message);
+        console.log('Error fetching user:', userError.message);
         setUser(null);
         setSession(null);
       } else {
