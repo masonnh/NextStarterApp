@@ -1,15 +1,16 @@
 // use this for accessing supabase client side
 
-import { getEnvVars } from '../env';
 import { createBrowserClient } from '@supabase/ssr';
 
-const { supabaseUrl, supabaseAnonKey } = getEnvVars();
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-export function createClient() { 
-    return createBrowserClient(
-        supabaseUrl as string,
-        supabaseAnonKey as string,
-    )
-};
+export function createClient() {
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error(
+      'Supabase env vars NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are required.',
+    );
+  }
 
-export const supabase = createClient();
+  return createBrowserClient(supabaseUrl as string, supabaseAnonKey as string);
+}

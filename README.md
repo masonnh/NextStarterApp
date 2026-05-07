@@ -1,45 +1,61 @@
-# NextJS Starter App
-A starter app in NextJS.
+# NextStarterApp
 
-## Functionality
-Supports creating a user profile with Google OAuth and saving it to Supabase.
+Lightweight Next.js starter with Supabase auth and Stripe payments.
 
-## Setup
-### 1. Environment Variables
-You will need a .env.local file located in the root of your project directory.
-Copy ```.env.example``` to a new file called ```.env.local``` and fill out the environment variables inside.
+## What this repo provides
 
-```cp .env.example .env.local```
+- Written in TypeScript
+- Next.js (app router) frontend with Tailwind + Shadcn.
+- Supabase client + server helpers (auth + DB scaffolding).
+- Google OAuth for one-click signups
+- Prettier and ESLint for code formatting and correctness.
 
-### 2. External Technology
-You will need to connect 2 technologies before this will work:
-- Supabase
-- Google OAuth (from the Google Cloud Console)
+## In progress
 
-Tutorials on how to do this are beyond the scope of this repository. If you go through and ensure that you have legitimate values for each of the environmental variables, you will be well on your way.
+- Stripe Checkout API route and a webhook route to verify events.
+- GitHub Actions to automate the CI/CD pipeline
 
-### 3. Database Schema
-This app is extremely simple. Supabase automatically creates an Auth table for you. This is all you need for the app to work.
+## Quickstart
 
-### 4. Name
-This app assumes the product name is "Caster". You can search and replace all instances of the word "Caster" in this repo with your own product name.
+1. Copy environment variables:
 
-## Tech Stack
-- NextJS
-- Typescript
-- Supabase
-- Google OAuth
+```bash
+cp .env.example .env.local
+# then edit .env.local with your keys
+```
 
-## Pages
-### General
-- Home/Landing Page
-- Login
-- Profile (must be logged in)
-- Coming Soon
+2. Install and run locally:
 
-### Legal
-- Privacy Policy
-- Terms and Conditions
+```bash
+npm install
+npm run dev
+```
 
-### Product
-- Version
+3. Open http://localhost:3000
+
+## Required environment variables
+
+See `.env.example` for the full list. Key ones:
+
+- `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `NEXT_PUBLIC_BASE_URL` (e.g. `http://localhost:3000`)
+
+## Supabase
+
+- Client and server helpers live under `src/lib/supabase/`.
+- Provide the public anon keys for client-side use and the service role key for server-only operations.
+
+## Styling & Design System
+
+- We use Tailwind and Shadcn for our UI
+
+## CI / Formatting
+
+- GitHub Actions workflow in `.github/workflows/ci.yml` runs build and basic checks.
+- Formatting: `npm run format` (Prettier).
+- Linting: `npm run lint:fix` (ESLint).
+
+## Notes / Next steps
+
+- Need to add Stripe support for tiered memberships
+- Recommended deployment: Vercel. Set env vars in the Vercel dashboard and point the Stripe webhook to your production URL.

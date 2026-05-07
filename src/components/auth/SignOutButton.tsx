@@ -1,22 +1,23 @@
-"use client";
+'use client';
 
-import Button from '@mui/material/Button';
-import { logout } from "./actions";
+import { Button } from '@/components/ui/Button';
 
-function SignOutButton() {
-    async function handleLogout() {
-        logout();
-    }
+import { logout } from './actions';
 
-    return (
-        <Button 
-            onClick={handleLogout} 
-            className='button button-contained' 
-            variant="contained"
-        >
-            Sign out
-        </Button>
-    );
+interface SignOutButtonProps {
+  className?: string;
+}
+
+function SignOutButton({ className }: SignOutButtonProps) {
+  async function handleLogout() {
+    logout();
+  }
+
+  return (
+    <Button onClick={handleLogout} className={className}>
+      Sign out
+    </Button>
+  );
 }
 
 export default SignOutButton;
