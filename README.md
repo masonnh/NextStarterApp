@@ -1,61 +1,121 @@
 # NextStarterApp
 
-Lightweight Next.js starter with Supabase auth and Stripe payments.
+NextStarterApp is a Next.js app router starter built with Supabase, Tailwind CSS, and shadcn/ui. The current codebase includes a marketing landing page, Google OAuth login, a protected profile route, and Supabase-backed contact, waitlist, and feedback flows.
 
-## What this repo provides
+## Getting Started
 
-- Written in TypeScript
-- Next.js (app router) frontend with Tailwind + Shadcn.
-- Supabase client + server helpers (auth + DB scaffolding).
-- Google OAuth for one-click signups
-- Prettier and ESLint for code formatting and correctness.
+### Prerequisites
 
-## In progress
+- Node.js
+- npm
+- A Supabase project
 
-- Stripe Checkout API route and a webhook route to verify events.
-- GitHub Actions to automate the CI/CD pipeline
+### Setup
 
-## Quickstart
-
-1. Copy environment variables:
+Copy the example environment file and fill in your values:
 
 ```bash
-cp .env.example .env.local
-# then edit .env.local with your keys
+copy .env.example .env.local
 ```
 
-2. Install and run locally:
+Install dependencies:
 
 ```bash
 npm install
+```
+
+Run the app locally:
+
+```bash
 npm run dev
 ```
 
-3. Open http://localhost:3000
+Open http://localhost:3000.
 
-## Required environment variables
+## Features
 
-See `.env.example` for the full list. Key ones:
+- Next.js 16 app router frontend written in TypeScript.
+- Landing page composed from reusable section components.
+- Google OAuth login through Supabase.
+- Protected profile route guarded by the app proxy.
+- Feedback board with feature requests, voting, commenting, sorting, filtering, and search.
+- Contact form that stores submissions in Supabase.
+- Waitlist signup form that stores email addresses in Supabase.
+- Legal pages for privacy and terms.
+- Shared UI primitives built with shadcn/ui and Radix components.
 
-- `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `NEXT_PUBLIC_BASE_URL` (e.g. `http://localhost:3000`)
+## Application Secrets and Environment Variables
 
-## Supabase
+The example environment file is [`.env.example`](.env.example).
 
-- Client and server helpers live under `src/lib/supabase/`.
-- Provide the public anon keys for client-side use and the service role key for server-only operations.
+Required values for the current app:
 
-## Styling & Design System
+- `NEXT_PUBLIC_BASE_URL`
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
-- We use Tailwind and Shadcn for our UI
+Google OAuth is configured through Supabase. See [GOOGLE_OAUTH_SETUP.md](GOOGLE_OAUTH_SETUP.md) for the provider setup flow.
 
-## CI / Formatting
+## Scripts
 
-- GitHub Actions workflow in `.github/workflows/ci.yml` runs build and basic checks.
-- Formatting: `npm run format` (Prettier).
-- Linting: `npm run lint:fix` (ESLint).
+Available npm scripts from [package.json](package.json):
 
-## Notes / Next steps
+```bash
+npm run dev
+npm run build
+npm run start
+npm run lint
+npm run lint:fix
+npm run format
+npm run typecheck
+```
 
-- Need to add Stripe support for tiered memberships
-- Recommended deployment: Vercel. Set env vars in the Vercel dashboard and point the Stripe webhook to your production URL.
+## Project Structure
+
+```text
+src/
+|-- app/                 # Routes, pages, and server actions
+|   |-- auth/callback    # OAuth callback route
+|   |-- contact          # Contact form page and action
+|   |-- feedback         # Feedback board page and actions
+|   |-- login            # Google login page
+|   |-- profile          # Protected profile page
+|   |-- waitlist         # Waitlist page and action
+|   |-- (legal)          # Privacy and terms pages
+|-- components/          # Layout, auth, landing, and UI components
+|-- lib/supabase/        # Supabase client, server, and middleware helpers
+|-- proxy.ts             # Auth session refresh and route protection
+supabase/sql/            # Database schema and seed SQL
+```
+
+## Supabase Data Model
+
+The core schema is defined in [supabase/sql/001_core_schema.sql](supabase/sql/001_core_schema.sql).
+
+It currently creates these tables:
+
+- `waitlist_signups`
+- `contact_submissions`
+- `feature_requests`
+- `feature_request_votes`
+- `feature_request_comments`
+
+The schema also enables row-level security and defines policies for the current form and feedback flows.
+
+## Route Overview
+
+- `/` renders the landing page.
+- `/login` starts Google OAuth sign-in.
+- `/auth/callback` exchanges the OAuth code for a Supabase session and redirects to `/profile`.
+- `/profile` is protected and redirects unauthenticated users to `/login`.
+- `/contact` submits contact messages to Supabase.
+- `/waitlist` saves waitlist emails to Supabase.
+- `/feedback` loads the feedback board and its related data from Supabase.
+- `/comingsoon` exists as a standalone page.
+- `/privacy` and `/terms` are available under the legal route group.
+
+## Current Notes
+
+- The login flow uses Google via Supabase, not a local email/password auth flow.
+- The profile page is currently a placeholder.
+- Stripe billing and CI/CD automation will be added in the future.
